@@ -1,6 +1,6 @@
 --- 
 title: "Gender Education"
-author: "Qinqi Zhang"
+author: "Qinqi Zhang, Yanqing Wang"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
