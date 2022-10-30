@@ -1,6 +1,6 @@
 --- 
 title: "Gender Education"
-author: "YOUR NAMES HERE"
+author: "Qinqi Zhang"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
