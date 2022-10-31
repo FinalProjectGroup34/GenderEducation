@@ -1,11 +1,30 @@
 # Proposal
 
 ## Research topic
-In our Project, we want to figure out if gender inequalities still exist in education, and what types of aspects have influenced those inequalities. For example, we will find out the changes in gender inequalities in education over time, and the distribution of gender education in different countries and areas. In the past, gender stereotypes and biases are rooted and it shows in any other field. We need to study if those gender stereotypes are still present. We will focus on three indicators: completion rate, out-of-school children rate, and literacy rate. To be more specific, the completion rate is the percentage of the cohort of children or young people three to five years older than the intended age for the last grade of each level of education (primary, lower secondary, or upper secondary) who have completed that level of education. Out-of-school children rate is the percentage of children or young people in the official age range for a given level of education who are not attending either pre-primary, primary, secondary, or higher levels of education. Lastly, the literacy rate is the percentage of the population that can both read and write a short, simple statement about their everyday life. The education inequalities will illustrate through those data.
+In our Project, we want to figure out if gender inequalities still exist in education, and what types of aspects have influenced those inequalities. For example, we will find out the changes in gender inequalities in education over time, the distribution of gender education in different countries and areas, and whether countries with high rates of educational underachievement have a greater probability of sitting on gender inequality. In the past, gender stereotypes and biases are rooted and it shows in any other field. We need to study if those gender stereotypes are still present. We will focus on some indicators: completion rate, out-of-school children rate, literacy rate, etc. Furthermore, Gender data in education is a significant indicator in order to figure out the gender equality issue and predict the achievement of future improvement in females. 
 
-In this research topic, we will collect the demographic of females and males of various ages and analysis the gender education in different indicators.
+In this research topic, we will collect the demographic of females and males of various ages and analyze gender education in different indicators. Apart from this, we also want to find that the learning achievement in reading, mathematics, and science in different genders. 
+Research Question:
+
+1.	if gender inequalities still exist in education
+
+2.	what types of aspects have influenced those inequalities.
+
+3.	whether countries with high rates of educational underachievement have a greater probability of sitting on gender inequality
+
+
 
 
 
 ## Data availability
+We will use the data about completion rate, out-of-school children rate, literacy rate from UNICEF: 
 
+To be more specific, the completion rate is the percentage of the cohort of children or young people three to five years older than the intended age for the last grade of each level of education (primary, lower secondary, or upper secondary) who have completed that level of education. Out-of-school children rate is the percentage of children or young people in the official age range for a given level of education who are not attending either pre-primary, primary, secondary, or higher levels of education. Lastly, the literacy rate is the percentage of the population that can both read and write a short, simple statement about their everyday life. The education inequalities will illustrate through those data. 
+
+We also used the world inequality database on education data at UNESCO:
+
+The World Inequality Database on Education (WIDE) brings together data from DHS, MICS, and other national household surveys and learning assessments from over 160 countries. Users can compare education outcomes between countries and between groups within countries, according to factors that are associated with inequality, including wealth, gender, ethnicity, and location. 
+
+Higher education attendance: Percentage of people aged 18-22 years attending higher education.
+Tertiary completion rate: Percentage of people aged 25–29/30–34, who have completed at least two/four years of higher education.
+Mean years of education: Average number of years of schooling attained for the age group 20–24 years.
