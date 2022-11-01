@@ -37,7 +37,8 @@ To expand our datasets, we also found UNESCO, which is a world inequality databa
   2. Tertiary completion rate: Percentage of people aged 25–29/30–34, who have completed at least two/four years of higher education.
   
   3. Mean years of education: Average number of years of schooling attained for the age group 20–24 years.
-
+  
+  
 Therefore, we would combine all these datasets with variability of country and gender. We would categorize a country based on its income level, such as low-income, medium-income and high-income, investigating whether low-income countries have higher presence of gender inequality in education. 
 
 However, there are some problems in our proposed dataset:
