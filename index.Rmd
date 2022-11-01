@@ -7,7 +7,7 @@ site: bookdown::bookdown_site
 
 # Introduction
 
-Education is always an important aspect when assessing development, and gender equality also symbolizes development. In the past, most people had no opportunities to be educated because of financial or society status reasons. Not to mention, women had limited access to education due to gender inequality, leading to high probabilities of child marriage and teenage pregnacy. 
+Education is always an important aspect when assessing development, and gender equality also symbolizes development. In the past, most people had no opportunities to be educated because of financial or society status reasons. Not to mention, women had limited access to education due to gender inequality, leading to high probabilities of child marriage and teenage pregnancy[1](https://www.worldvision.ca/stories/education/why-is-education-important#Why-is-education-important). 
 
 Currently, things have been improving. As female master's students, with gratitude and celebration of modern development, the existence of gender inequality in education in recent years is proposed to be explored in this research. Multiple indicators would be used for investigation, such as youth literacy rate, out-of-school rate, etc.
 
