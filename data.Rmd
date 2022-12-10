@@ -2,6 +2,34 @@
 
 ## Sources
 
+Our proposed dataset was collected from multiple data sources over the past 10+ years.
+
+1. Multiple Indicator Cluster Surveys (MICS) database: It contains information about children and women from over 200 countries round the world, such as children poverty, HIV/AIDS. All data are primary and gathered from surveys organized by UNICEF. 
+
+
+2. DHS:
+
+
+There are over 100 indicators regarding gender and education from our data sources. After screening, the eleven indicators which we chose to use in this project mainly come from six aspects: 
+
+* **Completion rate** presents the percentage of cohort of children or young people three to five years older than the intended age for the last grade of each level of education (primary, lower secondary, or upper secondary) who have completed that level of education. A low completion rate indicates low or delayed entry into a given level of education, high drop-out, high repetition, late completion, or a combination of these factors. The dataset has 3 sheets, each for one level of education.
+
+
+* **Out-of-school children rate** illustrates the proportion of children who fall within the prescribed age range for a particular educational level but do not attend primary, lower secondary, or higher secondary school.  The higher the out-of-school rate, the more emphasis must be placed on expanding access to education. Three sheets, one for each degree of schooling, make up the dataset.
+
+* **Literacy rate** displays percentage of population (youth and adult) that can both read and write a short, simple statement about their everyday life. A lower rate means more of the population is illiterate. The dataset is separated into 2 sheets, each of which represents an age group. 
+
+
+
+Several problems are discovered:
+
+1. The time period of data collection ranges from 2010 to 2021. Most recent data is used for countries with multiple years of data. Therefore, data of some countries may be collected in 2010 while some may be collected in 2021. It raises the risk of comparison inequality. Developments over the past 10 years have likely increased access to education.
+
+2. Since all data are collected from household surveys, the reliability of this kind of house-to-house survey is questionable. This is also the common problem of primary data source. 
+
+3. There are many missing values in our proposed dataset. Our missing value analysis implies there are more missing values for more developed countries. Reasons and details are discussed in Section 3.3. Besides, as the dataset is assembled from multiple data sources, the incidence of missing values increases. Most countries lack at least one indicator.
+
+
 ## Cleaning / transformation
 
 ## Missing value analysis
