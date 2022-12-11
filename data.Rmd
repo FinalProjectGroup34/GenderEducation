@@ -57,4 +57,9 @@ In addition, the other three indicators are all in one dataset. This dataset con
     gg_miss_var(mydata,
             facet = Development_Regions)
     ```   
-    
+
+For the First graph, there are 11 indicators. The left side shows how many missing values for each indicator; for example, there are around 220 missing values for the os_p (out of school for primary) variables. And the right side shows the interactions of those missing values. In the graph, 134 rows missed all 11 indicators, and 52 rows missed the last two variables: ly_a (literacy for adults) and ly_y (literacy for youth). 
+
+For the second graph, we can clearly see the missing value in each column with the percentage. In general, there are 42.8% missing values. For the country, development regions, and have no missing value. For other indicators, the ly_a (literacy for adults) and ly_y (literacy for youth) have the highest missing percentage, 65.33%.
+
+For the third graph, we observe the missing value in different development regions. More developed and less developed areas have higher missing observations, respectively around 80 missing values and 90. However, the least developed areas do not have much missing. We can see that more developed and less developed don’t have education issues. There have been no specific related questionnaires and surveys about education topics of literacy, or attendance, the highest level achieved in recent years.
