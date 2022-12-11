@@ -9,6 +9,11 @@ Our proposed dataset was collected from multiple data sources over the past 10+ 
 
 2. DHS:
 
+DHS(Demographic and Health Surveys) is a nationally representative survey that collects a wealth of information on various topics in a specific country. The data is processed and presented in the final survey report containing several tables that provide information on specific indicators in a country. The DHS Program supports a range of data collection options that can be tailored to fit host countries’ particular monitoring and evaluation needs.
+
+The DHS Program’s basic approach is to collect comparable data across countries. To achieve this, standard model questionnaires have been developed, along with a written description of why certain questions or sections have been included. They have the model questionnaires in each country. 
+
+Surveys with large sample sizes (usually between 5,000 and 30,000 households). In all households, women aged 15-49 are eligible to participate; in many surveys, men aged 15-54(59) from a sub-sample are also eligible to participate. There are three core questionnaires in DHS surveys: A Household Questionnaire, a Women’s Questionnaire, and a Men's questionnaire.
 
 There are over 100 indicators regarding gender and education from our data sources. After screening, the eleven indicators which we chose to use in this project mainly come from six aspects: 
 
@@ -19,6 +24,11 @@ There are over 100 indicators regarding gender and education from our data sourc
 
 * **Literacy rate** displays percentage of population (youth and adult) that can both read and write a short, simple statement about their everyday life. A lower rate means more of the population is illiterate. The dataset is separated into 2 sheets, each of which represents an age group. 
 
+* **Higher education attendance** Percentage of people aged 18-22 years attending higher education.
+
+* **Tertiary completion rate** Percentage of people aged 25–29/30–34, who have completed at least two/four years of higher education.
+
+* **Mean years of education** Average number of years of schooling attained for the age group 20–24 years.
 
 
 Several problems are discovered:
