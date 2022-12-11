@@ -116,9 +116,9 @@
 <li><p><strong>Demographic and Health Surveys (DHS)</strong> is a nationally representative survey that collects a wealth of information on various topics in a specific country. The data is processed and presented in the final survey report containing several tables that provide information on specific indicators in a country. The DHS Program supports a range of data collection options that can be tailored to fit host countries’ particular monitoring and evaluation needs.</p></li>
 </ol>
 <ul>
-<li>The DHS Program’s basic approach is to collect comparable data across countries. To achieve this, standard model questionnaires have been developed, along with a written description of why certain questions or sections have been included. They have the model questionnaires in each country.</li>
+<li><p>The DHS Program’s basic approach is to collect comparable data across countries. To achieve this, standard model questionnaires have been developed, along with a written description of why certain questions or sections have been included. They have the model questionnaires in each country.</p></li>
+<li><p>Surveys with large sample sizes (usually between 5,000 and 30,000 households). In all households, women aged 15-49 are eligible to participate; in many surveys, men aged 15-54(59) from a sub-sample are also eligible to participate. There are three core questionnaires in DHS surveys: A Household Questionnaire, a Women’s Questionnaire, and a Men’s questionnaire.</p></li>
 </ul>
-<p>Surveys with large sample sizes (usually between 5,000 and 30,000 households). In all households, women aged 15-49 are eligible to participate; in many surveys, men aged 15-54(59) from a sub-sample are also eligible to participate. There are three core questionnaires in DHS surveys: A Household Questionnaire, a Women’s Questionnaire, and a Men’s questionnaire.</p>
 <p>There are over 100 indicators regarding gender and education from our data sources. After screening, the eleven indicators which we chose to use in this project mainly come from six aspects:</p>
 <ul>
 <li><p><strong>Completion rate</strong> presents the percentage of cohort of children or young people three to five years older than the intended age for the last grade of each level of education (primary, lower secondary, or upper secondary) who have completed that level of education. A low completion rate indicates low or delayed entry into a given level of education, high drop-out, high repetition, late completion, or a combination of these factors. The dataset has 3 sheets, each for one level of education.</p></li>
@@ -139,13 +139,11 @@
 <h2><span class="header-section-number">3.2</span> Cleaning / transformation<a href="data.html#cleaning-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Since we collected 4 datasets, cleaning and transformation are performed separately.
 In datasets of completion rate, literacy rate and out-of school rate, worksheets are separated using <em>read_excel</em> from <em>readxl</em> package. Columns orther than country name, development level and indicators are all removed, leaving us a 202 <span class="math inline">\(*\)</span> 4 dataset. Regional development level is categorized into 4 levels, listed sequentially: not classified, least developed, less developed, and more developed. After transforming with <em>pivot_longer</em> (i.e, creating a categorical column for gender), each dataset is now with 404 rows and 4 columns.</p>
-<p>In addition, the other three indicators are all in one dataset. This dataset contains records from multiple years. Maximum values for each country are chosen instead of most recent values, since it is discovered that some countries have most recent values of 0 but valid numbers for other records. There are over 300 countries/regions in this dataset. Therefore, after combining all data frames together by country names, a data frame with 450 rows and 14 columns are obtained. Each row presents a country/region, and 11 columns records over 1900 indicator data points.
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<p>=======
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 9d13cf95ee35d2fde59869f2ea73db0750117e8c</p>
+<p>In addition, the other three indicators are all in one dataset. This dataset contains records from multiple years. Maximum values for each country are chosen instead of most recent values, since it is discovered that some countries have most recent values of 0 but valid numbers for other records. There are over 300 countries/regions in this dataset. Therefore, after combining all data frames together by country names, a data frame with 450 rows and 14 columns are obtained. Each row presents a country/region, and 11 columns records over 1900 indicator data points.</p>
 </div>
 <div id="missing-value-analysis" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Missing value analysis<a href="data.html#missing-value-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-3-2.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
 
 </div>
 </div>

@@ -11,7 +11,7 @@ Our proposed dataset was collected from multiple data sources over the past 10+ 
 
 + The DHS Program’s basic approach is to collect comparable data across countries. To achieve this, standard model questionnaires have been developed, along with a written description of why certain questions or sections have been included. They have the model questionnaires in each country. 
 
-Surveys with large sample sizes (usually between 5,000 and 30,000 households). In all households, women aged 15-49 are eligible to participate; in many surveys, men aged 15-54(59) from a sub-sample are also eligible to participate. There are three core questionnaires in DHS surveys: A Household Questionnaire, a Women’s Questionnaire, and a Men's questionnaire.
++ Surveys with large sample sizes (usually between 5,000 and 30,000 households). In all households, women aged 15-49 are eligible to participate; in many surveys, men aged 15-54(59) from a sub-sample are also eligible to participate. There are three core questionnaires in DHS surveys: A Household Questionnaire, a Women’s Questionnaire, and a Men's questionnaire.
 
 There are over 100 indicators regarding gender and education from our data sources. After screening, the eleven indicators which we chose to use in this project mainly come from six aspects: 
 
@@ -46,3 +46,15 @@ In addition, the other three indicators are all in one dataset. This dataset con
 
 ## Missing value analysis
 
+```{r}
+    library(ggplot2)
+    library(naniar)
+    total_data<-read.csv("/Users/zhangqinqi/Desktop/fall2022/5702/Genderdata/data_total.csv")
+    mydata <- as.data.frame(total_data)
+    gg_miss_upset(mydata,nsets = 11)
+
+    vis_miss(mydata)
+    gg_miss_var(mydata,
+            facet = Development_Regions)
+    ```   
+    
