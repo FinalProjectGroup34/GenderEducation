@@ -9,7 +9,7 @@ Our proposed dataset was collected from multiple data sources over the past 10+ 
 
 2. DHS:
 
-DHS(Demographic and Health Surveys) is a nationally representative survey that collects a wealth of information on various topics in a specific country. The data is processed and presented in the final survey report containing several tables that provide information on specific indicators in a country. The DHS Program supports a range of data collection options that can be tailored to fit host countries’ particular monitoring and evaluation needs.
+DHS (Demographic and Health Surveys) is a nationally representative survey that collects a wealth of information on various topics in a specific country. The data is processed and presented in the final survey report containing several tables that provide information on specific indicators in a country. The DHS Program supports a range of data collection options that can be tailored to fit host countries’ particular monitoring and evaluation needs.
 
 The DHS Program’s basic approach is to collect comparable data across countries. To achieve this, standard model questionnaires have been developed, along with a written description of why certain questions or sections have been included. They have the model questionnaires in each country. 
 
