@@ -130,6 +130,9 @@
 </div>
 <div id="cleaning-transformation" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Cleaning / transformation<a href="data.html#cleaning-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Since we collected 4 datasets, cleaning and transformation are performed separately.
+In datasets of completion rate, literacy rate and out-of school rate, worksheets are separated using ‘r read_excel’ from ‘r readxl’ package. Columns orther than country name, development level and indicators are all removed, leaving us a 202*4 dataset. Regional development level is categorized into 4 levels, listed sequentially: not classified, least developed, less developed, and more developed. After transforming with ‘r pivot_longer’ (i.e, creating a categorical column for gender), each dataset is now with 404 rows and 4 columns.
+In addition, the other three indicators are all in one dataset. This dataset contains records from multiple years. Maximum values for each country are chosen instead of most recent values, since it is discovered that some countries have most recent values of 0 but valid numbers for other records. There are over 300 countries/regions in this dataset. Therefore, after combining all data frames together by country names, a data frame with 450 rows and 14 columns are obtained. Each row presents a country/region, and 11 columns records over 1900 indicator data points.</p>
 </div>
 <div id="missing-value-analysis" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Missing value analysis<a href="data.html#missing-value-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
