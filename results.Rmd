@@ -121,16 +121,13 @@ In this Cleveland line plot, for countries with rate over 10%, more countries ha
 
 It is worth mentioning that outliers from two plots are highly overlapped. And most outlier countries lie in below average cluster for at least one plot. This situation may also involve in other aspects. Therefore, we investigate the influence of financial and development level of countries. 
 
-## Relationship among development level, education underachievement and gender inequality
+## Relationship among development level, education achievement and gender 
 
-
-
-
-```{r,fig.width=8,fig.height=12,echo=FALSE}
+```{r,fig.width=8,fig.height=15,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_2529_m,reorder(country,comp_higher_2yrs_2529_m))) +
         geom_line(aes(group = country)) +
         geom_point(aes(color = Sex))+facet_grid(Development_Regions~ .,scales="free_y") +ggtitle("Tertiary completion rate vs Sex")+theme(axis.text=element_text(size=10))
 ```
 
-
+By taking development into account, we discover that in general, least developed countries seem to have lower tertiary completion rate and rates of most more developed countries are above 40%. Moreover, there exists more observations that male rates are much higher than female ones in the facet of least developed regions.It validates our hypothesis that low developed regions are more likely to have unsatisfied education situation and gender discrimination.
 
