@@ -208,6 +208,7 @@ In this plot, we observe the missing value in different development regions. Mor
 ```{r, echo=FALSE}
 data%>%filter(is.na(lr_a),is.na(lr_y),is.na(cr_p),is.na(cr_ls),is.na(cr_us),is.na(os_p),is.na(os_ls),is.na(os_us),is.na(eduyears_2024_m),is.na(comp_higher_2yrs_2529_m),is.na(attend_higher_1822_m))%>%group_by(Development_Regions)%>%summarise(all_missing_value_n=n())%>%ggplot(aes(y=all_missing_value_n, x=Development_Regions))+geom_bar(stat="identity")
 ```
+
 To validate and learn more previous finding, we want to further survey that how rows have missing values for all indicators distributed in aspect of development level. This bar plot clearly supports our finding that more developed countries might be no longer focused in education underachievement surveys.
 
 ```{r, include=FALSE}
@@ -215,7 +216,7 @@ data_new<-data%>%filter(!(is.na(lr_a) &is.na(lr_y)&is.na(cr_p)&is.na(cr_ls)&is.n
 write.csv(data_new, "data_new.csv", row.names = FALSE)
 ```
 
-Eventually, we remove those rows which are NAs in all indicators. Moreover, we keep the other rows even though they also exist missing values. Since for explore relationship in gender and education, removing NAs seems unnecessary.  
+Eventually, we remove those rows which are NAs in all indicators. Moreover, we keep the other rows even though they also exist missing values. Since for exploring relationship between gender and education, removing NAs seems unnecessary.  
 
 
 
