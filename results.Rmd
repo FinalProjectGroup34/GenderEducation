@@ -1,1 +1,6 @@
 # Results
+```{r}
+data<- read.csv(file = 'data_new.csv')
+data
+```
+

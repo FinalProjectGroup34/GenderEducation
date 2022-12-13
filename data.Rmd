@@ -37,29 +37,185 @@ Several problems are discovered:
 
 3. There are many missing values in our proposed dataset. Our missing value analysis implies there are more missing values for more developed countries. Reasons and details are discussed in Section 3.3. Besides, as the dataset is assembled from multiple data sources, the incidence of missing values increases. Most countries lack at least one indicator.
 
+```{r setup, include=FALSE}
+library(dplyr)
+library(tidyverse)
+library(readxl)
+library(naniar)
+library(ggplot2)
+```
+
+
+```{r, include=FALSE}
+data_dhs <- read.csv(file = 'dhs.csv')
+
+data_cr_p<-read_excel('Completion_rate.xlsx', 
+                       sheet = "Primary",col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
+
+data_cr_ls<-read_excel('Completion_rate.xlsx', 
+                       sheet = "Lower secondary",col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
+
+data_cr_us<-read_excel('Completion_rate.xlsx', 
+                       sheet = "Upper secondary",col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
+
+data_lr_a<-read_excel('Literacy_rate.xlsx', 
+                       sheet = "adult literacy rate, aged 15+",
+                      col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male","data source","Time period"),skip = 2 )
+data_lr_y<-read_excel('Literacy_rate.xlsx', 
+                       sheet = "Youth literacy rate, aged 15-24",
+                      col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male","data source","Time period"),skip = 2 )
+
+data_os_p<-read_excel('Out_of_school_rate.xlsx', 
+                       sheet = "Primary",
+                      col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
+
+data_os_ls<-read_excel('Out_of_school_rate.xlsx', 
+                       sheet ="Lower secondary",
+                      col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
+
+data_os_us<-read_excel('Out_of_school_rate.xlsx', 
+                       sheet = "Upper secondary",
+                      col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
+
+```
+
+
 ## Cleaning / transformation
 
-Since we collected 4 datasets, cleaning and transformation are performed separately. 
-In datasets of completion rate, literacy rate and out-of school rate, worksheets are separated using *read_excel* from *readxl* package. Columns orther than country name, development level and indicators are all removed, leaving us a 202 $*$ 4 dataset. Regional development level is categorized into 4 levels, listed sequentially: not classified, least developed, less developed, and more developed. After transforming with *pivot_longer* (i.e, creating a categorical column for gender), each dataset is now with 404 rows and 4 columns. 
 
-In addition, the other three indicators are all in one dataset. This dataset contains records from multiple years. Maximum values for each country are chosen instead of most recent values, since it is discovered that some countries have most recent values of 0 but valid numbers for other records. There are over 300 countries/regions in this dataset. Therefore, after combining all data frames together by country names, a data frame with 450 rows and 14 columns are obtained. Each row presents a country/region, and 11 columns records over 1900 indicator data points.
+Since we collected 4 datasets, cleaning and transformation are performed separately. 
+In datasets of completion rate, literacy rate and out-of school rate, worksheets are separated using *read_excel* from *readxl* package. Columns orther than country name, development level and indicators are all removed, leaving us a 202 $*$ 4 dataset. Ordinal Regional development level is categorized into 4 levels, listed sequentially: not classified, least developed, less developed, and more developed. After transforming with *pivot_longer* (i.e, creating a categorical column for gender), each dataset is now with 404 rows and 4 columns.These eight dataframes are combined first by countiry names, development level and sex.
+
+In addition, the other three indicators are all in one dataset. This dataset contains records from multiple years. Maximum values for each country are chosen instead of most recent values, since it is discovered that some countries have most recent values of 0 but valid numbers for other records. To uniform with other rates, tertiary completion rate and high education attendance rate are multiplied by 100. There are over 300 countries/regions in this dataset, which means around 25 countries only exist here. Therefore, when combining all data frames together by country names, we observed that these 25 countries have NA for development level. Development level is a key criteria for our purpose and we do not want to remove these data as they have valid records. Fortunately, these data has variables of income level. Therefore, we decided to use income level to categorize these countries. In detail, low income countries goes into least developed. Lower middle and upper income countries goes into less developed and high income ones are more developed.
+Finally, we obtained a table with 450 rows and 15 columns. Each row presents a country/region. 11 columns records over 1900 indicator data points and other columns are country, development level, sex and income group.
+
+
+```{r, include=FALSE}
+data_dhs<-data_dhs%>%
+  filter(category=="Sex")%>%
+  select(country,income_group,Sex,eduyears_2024_m,comp_higher_2yrs_2529_m,attend_higher_1822_m)%>%
+  group_by(country,income_group,Sex)%>%replace(is.na(.),-99)%>%
+  summarise(eduyears_2024_m=max(eduyears_2024_m),
+  comp_higher_2yrs_2529_m=max(comp_higher_2yrs_2529_m),
+  attend_higher_1822_m=max(attend_higher_1822_m),.groups="drop")%>% slice(c(-1,-2,-3,-4,-5,-6,-7,-8))%>%replace_with_na_at(.vars = c("eduyears_2024_m","comp_higher_2yrs_2529_m","attend_higher_1822_m"),
+  condition = ~.x == -99)
+```
+
+```{r, include=FALSE}
+data_cr_p<-data_cr_p%>%drop_na(ISO3)%>%
+    select(country,Development_Regions,Female,Male)%>%
+  pivot_longer(cols=c("Female",'Male'),names_to='Sex',values_to = "cr_p")
+
+data_cr_ls<-data_cr_ls%>%drop_na(ISO3)%>%
+    select(country,Development_Regions,Female,Male)%>%
+  pivot_longer(cols=c("Female",'Male'),names_to='Sex',values_to = "cr_ls")
+
+data_cr_us<-data_cr_us%>%drop_na(ISO3)%>%
+    select(country,Development_Regions,Female,Male)%>%
+  pivot_longer(cols=c("Female",'Male'),names_to='Sex',values_to = "cr_us")
+```
+
+
+```{r, include=FALSE}
+data_lr_a<-data_lr_a%>%drop_na(ISO3)%>%
+    select(country,Development_Regions,Female,Male)%>%
+  pivot_longer(cols=c("Female",'Male'),names_to='Sex',values_to = "lr_a")
+
+data_lr_y<-data_lr_y%>%drop_na(ISO3)%>%
+    select(country,Development_Regions,Female,Male)%>%
+  pivot_longer(cols=c("Female",'Male'),names_to='Sex',values_to = "lr_y")
+```
+
+```{r, include=FALSE}
+data_os_p<-data_os_p%>%drop_na(ISO3)%>%
+    select(country,Development_Regions,Female,Male)%>%
+  pivot_longer(cols=c("Female",'Male'),names_to='Sex',values_to = "os_p")
+
+data_os_ls<-data_os_ls%>%drop_na(ISO3)%>%
+    select(country,Development_Regions,Female,Male)%>%
+  pivot_longer(cols=c("Female",'Male'),names_to='Sex',values_to = "os_ls")
+
+data_os_us<-data_os_us%>%drop_na(ISO3)%>%
+    select(country,Development_Regions,Female,Male)%>%
+  pivot_longer(cols=c("Female",'Male'),names_to='Sex',values_to = "os_us")
+```
+
+```{r, include=FALSE}
+df_list <- list(data_lr_a,data_lr_y,data_cr_p, data_cr_ls, data_cr_us,data_os_p,data_os_ls,data_os_us)
+data_mics<-df_list %>% 
+    reduce(full_join,by=c('country','Development_Regions','Sex'))
+df_list<-list(data_mics,data_dhs)
+data<-df_list%>%reduce(full_join, by=c('country','Sex'))
+```
+
+```{r, include=FALSE}
+f1<-function(d){
+  if (is.na(d[2])){
+    if (is.na(d[12])){
+      return ('Not Classified')
+    }
+    else if (d[12]=='Lower middle income countries'){
+      return ('Less Developed')
+    }
+    else if (d[12]=="Upper middle income countries"){
+      return ('Less Developed')
+    }
+    else if (d[12]=="Low income countries"){
+      return ('Least Developed')
+    }
+    else if (d[12]=="High income countries"){
+      return ('More Developed')
+    }
+    else{
+      return (NA)
+    }
+  }
+  else {
+    return (d[2])
+  }
+}
+data$Development_Regions<- apply(data,1,f1)
+```
+
+```{r, include=FALSE}
+data$comp_higher_2yrs_2529_m=data$comp_higher_2yrs_2529_m*100
+data$attend_higher_1822_m<-data$attend_higher_1822_m*100
+```
+
 
 ## Missing value analysis
 
-```{r}
-    library(ggplot2)
-    library(naniar)
-    total_data<-read.csv("/Users/zhangqinqi/Desktop/fall2022/5702/Genderdata/data_total.csv")
-    mydata <- as.data.frame(total_data)
-    gg_miss_upset(mydata,nsets = 11)
+```{r, echo=FALSE}
+gg_miss_upset(data,nsets = 11)
+```   
 
-    vis_miss(mydata)
-    gg_miss_var(mydata,
+
+In this plot, there are 11 indicators visualized. The left side shows how many missing values for each indicator; for example, there are around 220 missing values for the os_p (out of school for primary) variables. And the right side shows the interactions of those missing values. In the graph, 134 rows missed all 11 indicators, and 52 rows missed the last two variables: ly_a (literacy for adults) and ly_y (literacy for youth). 
+
+```{r, echo=FALSE}
+vis_miss(data)
+```
+
+In this plot, we can clearly see the missing value in each column with the percentage. In general, there are 42.8% missing values. For the country, development regions, and have no missing value. For other indicators, the ly_a (literacy for adults) and ly_y (literacy for youth) have the highest missing percentage, 65.33%.
+
+```{r, echo=FALSE}
+gg_miss_var(data,
             facet = Development_Regions,show_pct = TRUE)
-    ```   
+```
 
-For the First graph, there are 11 indicators. The left side shows how many missing values for each indicator; for example, there are around 220 missing values for the os_p (out of school for primary) variables. And the right side shows the interactions of those missing values. In the graph, 134 rows missed all 11 indicators, and 52 rows missed the last two variables: ly_a (literacy for adults) and ly_y (literacy for youth). 
+In this plot, we observe the missing value in different development regions. More developed and less developed areas have higher missing observations, respectively around 50% and 80%. However, the least developed areas do not have much missing. We can see that more developed and less developed are less likely to have education issues. We deduce that there have been no specific related questionnaires and surveys about education topics of literacy, or attendance, the highest level achieved in recent years.
 
-For the second graph, we can clearly see the missing value in each column with the percentage. In general, there are 42.8% missing values. For the country, development regions, and have no missing value. For other indicators, the ly_a (literacy for adults) and ly_y (literacy for youth) have the highest missing percentage, 65.33%.
+```{r, echo=FALSE}
+data%>%filter(is.na(lr_a),is.na(lr_y),is.na(cr_p),is.na(cr_ls),is.na(cr_us),is.na(os_p),is.na(os_ls),is.na(os_us),is.na(eduyears_2024_m),is.na(comp_higher_2yrs_2529_m),is.na(attend_higher_1822_m))%>%group_by(Development_Regions)%>%summarise(all_missing_value_n=n())%>%ggplot(aes(y=all_missing_value_n, x=Development_Regions))+geom_bar(stat="identity")
+```
+To validate and learn more previous finding, we want to further survey that how rows have missing values for all indicators distributed in aspect of development level. This bar plot clearly supports our finding that more developed countries might be no longer focused in education underachievement surveys.
 
-For the third graph, we observe the missing value in different development regions. More developed and less developed areas have higher missing observations, respectively around 50% and 80%. However, the least developed areas do not have much missing. We can see that more developed and less developed don’t have education issues. There have been no specific related questionnaires and surveys about education topics of literacy, or attendance, the highest level achieved in recent years.
+```{r, include=FALSE}
+data_new<-data%>%filter(!(is.na(lr_a) &is.na(lr_y)&is.na(cr_p)&is.na(cr_ls)&is.na(cr_us)&is.na(os_p)&is.na(os_ls)&is.na(os_us)&is.na(eduyears_2024_m)&is.na(comp_higher_2yrs_2529_m)&is.na(attend_higher_1822_m)))
+write.csv(data_new, "data_new.csv", row.names = FALSE)
+```
+
+Eventually, we remove those rows which are NAs in all indicators. Moreover, we keep the other rows even though they also exist missing values. Since for explore relationship in gender and education, removing NAs seems unnecessary.  
+
+
+
