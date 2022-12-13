@@ -75,23 +75,25 @@ We use the ridgeline to show the out-of-school rate in different genders. The ri
 In the above section, we validate that gender discrimination in education still exists, therefore, we want to explore more on whether it is a general pattern or only certain countries sit on this situation by visualizing higher education attendance rate and mean years of education.  
 
 
+
 ```{r,fig.width=8,include=FALSE}
 library(rworldmap)
-data_compare<-data_new%>%filter(country %in% countryRegions$ADMIN )%>%select(country,Sex,eduyears_2024_m)%>%pivot_wider(names_from = Sex,values_from=eduyears_2024_m)%>%mutate(difference=Male-Female)
+data_compare<-data_new%>%filter(country %in% countryRegions$ADMIN )%>%select(country,Sex,eduyears_2024_m)%>%
+  pivot_wider(names_from = Sex,names_prefix='eduyears_2024_m_',values_from=eduyears_2024_m)%>%mutate(eduyears_2024_m_difference=eduyears_2024_m_Male-eduyears_2024_m_Female)
 map <- joinCountryData2Map(data_compare, joinCode = "NAME", nameJoinColumn = "country")
 ```
 
-```{r,echo=FALSE,warning=FALSE,fig.width=10}
+```{r,echo=FALSE,warning=FALSE,fig.width=10,fig.height=10}
 library(RColorBrewer)
 op=par(mfrow=c(2,1))
-mapCountryData(map, nameColumnToPlot="Female",borderCol='black',catMethod=c(1:16),colourPalette=brewer.pal(9,'YlOrBr'))
-mapCountryData(map, nameColumnToPlot="Male",borderCol='black', catMethod=c(1:16),colourPalette=brewer.pal(9,'YlOrBr'))
+mapCountryData(map, nameColumnToPlot="eduyears_2024_m_Female",borderCol='black',catMethod=c(1:16),colourPalette=brewer.pal(9,'YlOrBr'))
+mapCountryData(map, nameColumnToPlot="eduyears_2024_m_Male",borderCol='black', catMethod=c(1:16),colourPalette=brewer.pal(9,'YlOrBr'))
 ```
 
 This world map shows that majority countries have no big differences between male figures and female figures. To study how two figures are different, an additional map is visualized for plotting the difference between male and female.
 
 ```{r,echo=FALSE,warning=FALSE,fig.width=10}
-mapCountryData(map, nameColumnToPlot="difference",borderCol='black',
+mapCountryData(map, nameColumnToPlot="eduyears_2024_m_difference",borderCol='black',
 colourPalette=brewer.pal(7,'Spectral'),missingCountryCol='white',oceanCol='white')
 ```
 
@@ -102,6 +104,8 @@ ggplot(data_new%>%filter(!is.na(eduyears_2024_m)), aes(reorder(country,eduyears_
   geom_bar(position = "dodge", stat = "identity",width=0.7)+
   theme(axis.text=element_text(size=10))+coord_flip()
 ```
+
+
 
 In this bar chart, it shows trend that the fewer years of education, the more the male figure is higher than the female figure. Some outliers with at least 7.5 years of schooling but significantly higher male averages than female averages are detected: Tajikistan, D. R Congo, Kenya, Somalia, South Sudan, etc. 
 
