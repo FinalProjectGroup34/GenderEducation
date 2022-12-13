@@ -9,7 +9,7 @@ library(ggridges)
 library(tidyverse)
 ```
 
-```{r}
+```{r,warning=FALSE}
 myData <- as.data.frame(data_new)
 lr_a = subset(myData,lr_a!= "NA",lr_y!="NA")
 noNA_1 <- pivot_longer(lr_a, cols=lr_a:lr_y, names_to = "lr", values_to = "lr_rate")
@@ -31,7 +31,7 @@ In short, the literacy rates in youth have higher literacy rates than the litera
 
 
 
-```{r}
+```{r,warning=FALSE}
 cr = subset(myData,cr_p!= "NA",cr_ls!="NA")
 noNA_2 <- pivot_longer(cr, cols=cr_p:cr_us, names_to = "cr_type", values_to = "c_rate")
 ggplot(noNA_2, aes(x = cr_type, y = c_rate, fill = Sex))+
@@ -54,7 +54,7 @@ In short, some countries achieve higher rates, around 100%, but the trend of com
 
     
     
-```{r}
+```{r,warning=FALSE}
 os = subset(myData,os_p!= "NA",os_us!="NA")
 noNA_3 <- pivot_longer(os, cols=os_p:os_us, names_to = "os_type", values_to = "os_rate")
 ggplot(noNA_3, aes(x = os_rate, y = os_type, fill = Sex))+
@@ -75,12 +75,33 @@ We use the ridgeline to show the out-of-school rate in different genders. The ri
 In the above section, we validate that gender discrimination in education still exists, therefore, we want to explore more on whether it is a general pattern or only certain countries sit on this situation by visualizing higher education attendance rate and mean years of education.  
 
 
+```{r,fig.width=8,include=FALSE}
+library(rworldmap)
+data_compare<-data_new%>%filter(country %in% countryRegions$ADMIN )%>%select(country,Sex,eduyears_2024_m)%>%pivot_wider(names_from = Sex,values_from=eduyears_2024_m)%>%mutate(difference=Male-Female)
+map <- joinCountryData2Map(data_compare, joinCode = "NAME", nameJoinColumn = "country")
+```
+
+```{r,echo=FALSE,warning=FALSE,fig.width=10}
+library(RColorBrewer)
+op=par(mfrow=c(2,1))
+mapCountryData(map, nameColumnToPlot="Female",borderCol='black',catMethod=c(1:16),colourPalette=brewer.pal(9,'YlOrBr'))
+mapCountryData(map, nameColumnToPlot="Male",borderCol='black', catMethod=c(1:16),colourPalette=brewer.pal(9,'YlOrBr'))
+```
+
+This world map shows that majority countries have no big differences between male figures and female figures. To study how two figures are different, an additional map is visualized for plotting the difference between male and female.
+
+```{r,echo=FALSE,warning=FALSE,fig.width=10}
+mapCountryData(map, nameColumnToPlot="difference",borderCol='black',
+colourPalette=brewer.pal(7,'Spectral'),missingCountryCol='white',oceanCol='white')
+```
+
+In this map, a diverging color palette is used. In detail, light yellow indicates neutral difference. The warm colors indicate female is higher than male while the cold colors indicate the opposite. We observe that the region with male higher than female is mainly in Africa and West Asia. Then we use a bar chart to explore this pattern more.  
+
 ```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(eduyears_2024_m)), aes(reorder(country,eduyears_2024_m),eduyears_2024_m,fill=Sex)) +
   geom_bar(position = "dodge", stat = "identity",width=0.7)+
   theme(axis.text=element_text(size=10))+coord_flip()
 ```
-
 
 In this bar chart, it shows trend that the fewer years of education, the more the male figure is higher than the female figure. Some outliers with at least 7.5 years of schooling but significantly higher male averages than female averages are detected: Tajikistan, D. R Congo, Kenya, Somalia, South Sudan, etc. 
 
@@ -97,6 +118,9 @@ In this Cleveland line plot, for countries with rate over 10%, more countries ha
 It is worth mentioning that outliers from two plots are highly overlapped. And most outlier countries lie in below average cluster for at least one plot. This situation may also involve in other aspects. Therefore, we investigate the influence of financial and development level of countries. 
 
 ## Relationship among development level, education underachievement and gender inequality
+
+
+
 
 ```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_2529_m,reorder(country,comp_higher_2yrs_2529_m))) +
