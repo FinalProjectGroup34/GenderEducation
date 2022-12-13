@@ -1,6 +1,6 @@
 # Results
 
-## Exisitence of Gender Inequalities in Education 
+## Existence of gender inequalities in education 
 ```{r,echo=FALSE}
 data_new<- read.csv(file = 'data_new.csv')
 library(tidyr)
@@ -70,20 +70,10 @@ ggplot(noNA_3, aes(x = os_rate, y = os_type, fill = Sex))+
 ```      
 We use the ridgeline to show the out-of-school rate in different genders. The ridgeline shows the distribution of out-of-school values for 2 groups. All graphs in primary school, lower secondary, and upper secondary show right skew, which is a good sign, and the distribution of out-of-school rates focuses on the small rates. In primary school and lower secondary, they have a parallel distribution in both genders. The out-of-school rate in lower secondary slightly move to the right. The female rates in lower secondary are higher than male rates in the peak, and then the male rates are higher than females. For upper secondary, it is clear to observe that the distribution moves to the right a lot, and the rates at peak become larger around 20%.
 
-## Possibility of Gender Inequality for Certain Countries in Terms of educational underachievement 
+## Possibility of gender discrimination for certain countries in terms of educational underachievement 
 
+In the above section, we validate that gender discrimination in education still exists, therefore, we want to explore more on whether it is a general pattern or only certain countries sit on this situation by visualizing higher education attendance rate and mean years of education.  
 
-```{r,fig.width=8,fig.height=12,echo=FALSE}
-ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_2529_m,reorder(country,comp_higher_2yrs_2529_m))) +
-        geom_line(aes(group = country)) +
-        geom_point(aes(color = Sex))+facet_grid(Development_Regions~ .,scales="free_y") +ggtitle("Tertiary completion rate vs Sex")+theme(axis.text=element_text(size=10))
-```
-
-```{r,fig.width=8,fig.height=12,echo=FALSE}
-ggplot(data_new%>%filter(!is.na(attend_higher_1822_m)), aes(attend_higher_1822_m,reorder(country,attend_higher_1822_m))) +
-        geom_line(aes(group = country)) +
-        geom_point(aes(color = Sex))+ggtitle("Higher education attendance rate vs Sex")+theme(axis.text=element_text(size=10))
-```
 
 ```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(eduyears_2024_m)), aes(reorder(country,eduyears_2024_m),eduyears_2024_m,fill=Sex)) +
@@ -91,8 +81,28 @@ ggplot(data_new%>%filter(!is.na(eduyears_2024_m)), aes(reorder(country,eduyears_
   theme(axis.text=element_text(size=10))+coord_flip()
 ```
 
-## Relationship among Development Level, Education Underachievement and Gender Inequality
 
+In this bar chart, it shows trend that the fewer years of education, the more the male figure is higher than the female figure. Some outliers with at least 7.5 years of schooling but significantly higher male averages than female averages are detected: Tajikistan, D. R Congo, Kenya, Somalia, South Sudan, etc. 
+
+```{r,fig.width=8,fig.height=12,echo=FALSE}
+ggplot(data_new%>%filter(!is.na(attend_higher_1822_m)), aes(attend_higher_1822_m,reorder(country,attend_higher_1822_m))) +
+        geom_line(aes(group = country)) +
+        geom_point(aes(color = Sex))+ggtitle("Higher education attendance rate vs Sex")+theme(axis.text=element_text(size=10))
+```
+
+
+In this Cleveland line plot, for countries with rate over 10%, more countries have female rates higher than male rates while countries with below 10% rates are more to have male rates higher than female rates, even though the difference is not as big as mean education year. This helps indicate that countries with a low higher education attendance rate are having gender inequality problem. In the meanwhile, there are also some outliers, such as Nepal, Tajikistan, Bangladesh, Kenya, Somalia, etc. They have higher male rates but with decent higher education attendance rate. 
+
+
+It is worth mentioning that outliers from two plots are highly overlapped. And most outlier countries lie in below average cluster for at least one plot. This situation may also involve in other aspects. Therefore, we investigate the influence of financial and development level of countries. 
+
+## Relationship among development level, education underachievement and gender inequality
+
+```{r,fig.width=8,fig.height=12,echo=FALSE}
+ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_2529_m,reorder(country,comp_higher_2yrs_2529_m))) +
+        geom_line(aes(group = country)) +
+        geom_point(aes(color = Sex))+facet_grid(Development_Regions~ .,scales="free_y") +ggtitle("Tertiary completion rate vs Sex")+theme(axis.text=element_text(size=10))
+```
 
 
 
