@@ -8,22 +8,22 @@ data_new<- read.csv(file = 'data_new.csv')
 ## Possibility of Gender Inequality for Certain Countries in Terms of educational underachievement 
 
 
-```{r,echo=FALSE}
+```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_2529_m,reorder(country,comp_higher_2yrs_2529_m))) +
         geom_line(aes(group = country)) +
-        geom_point(aes(color = Sex))+facet_grid(Development_Regions~ .,scales="free_y") +ggtitle("Tertiary completion rate vs Sex")+theme(axis.text=element_text(size=5))
+        geom_point(aes(color = Sex))+facet_grid(Development_Regions~ .,scales="free_y") +ggtitle("Tertiary completion rate vs Sex")+theme(axis.text=element_text(size=10))
 ```
 
-```{r,echo=FALSE}
+```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(attend_higher_1822_m)), aes(attend_higher_1822_m,reorder(country,attend_higher_1822_m))) +
         geom_line(aes(group = country)) +
-        geom_point(aes(color = Sex))+ggtitle("Higher education attendance rate vs Sex")+theme(axis.text=element_text(size=6))
+        geom_point(aes(color = Sex))+ggtitle("Higher education attendance rate vs Sex")+theme(axis.text=element_text(size=10))
 ```
 
-```{r,echo=FALSE}
+```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(eduyears_2024_m)), aes(reorder(country,eduyears_2024_m),eduyears_2024_m,fill=Sex)) +
   geom_bar(position = "dodge", stat = "identity",width=0.7)+
-  theme(axis.text=element_text(size=6))+coord_flip()
+  theme(axis.text=element_text(size=10))+coord_flip()
 ```
 
 ## Relationship among Development Level, Education Underachievement and Gender Inequality
