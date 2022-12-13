@@ -9,6 +9,6 @@ missing-value-analysis
 results
 existence-of-gender-inequalities-in-education
 possibility-of-gender-discrimination-for-certain-countries-in-terms-of-educational-underachievement
-relationship-among-development-level-education-underachievement-and-gender-inequality
+relationship-among-development-level-education-achievement-and-gender
 interactive-component
 conclusion
