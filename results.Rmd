@@ -134,6 +134,23 @@ ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_
 
 By taking development into account, we discover that in general, least developed countries seem to have lower tertiary completion rate and rates of most more developed countries are above 40%. Moreover, there exists more observations that male rates are much higher than female ones in the facet of least developed regions.It validates our hypothesis that low developed regions are more likely to have unsatisfied education situation and gender discrimination.
 
+
+
+
+```{r,include=FALSE}
+data2<-data_new
+data2$Development_Regions<-droplevels(data2$Development_Regions)
+d2<-data2%>%filter(Development_Regions!='Not Classified'& !is.na(eduyears_2024_m))%>%mutate(level=cut(eduyears_2024_m, breaks=c(-Inf, 6, 10, Inf), labels=c("low","middle","high")))%>%select(Development_Regions,Sex,level)%>%filter(!is.na(level))
+d2
+d2$Development_Regions <- droplevels(d2$Development_Regions)
+levels(d2$Development_Regions)
+```
+
+```{r,fig.width=8,fig.height=5,echo=TRUE}
+vcd::mosaic(level ~ Sex+ Development_Regions,d2)
+```
+
+
 ## Relationship among indicators
 At last, we want to see the association between our indicators. We divided our variables into two parts, youth education and higher education. The first part is five variables: literacy rate in youth, the complete rate in primary and lower secondary, and the out-of-school rate in primary and lower secondary. The second part for higher education is five variables: literacy rate in adults, the complete rate in upper secondary, and the out-of-school rate in upper secondary, complete 2yrs higher education rate between 25 and 29,  and attend higher education rate between 18 and 22.
 ```{r}
