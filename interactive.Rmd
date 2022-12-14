@@ -1,3 +1,8 @@
 # Interactive component
 
 
+<script src="https://d3js.org/d3.v4.js"></script>
+<!-- Add 2 buttons -->
+<button onclick="update('cases')">Cases</button>
+<button onclick="update('death')">Deaths</button>
+<button onclick="update('people_fully_vaccinated')">People Fully Vaccinated</button>
