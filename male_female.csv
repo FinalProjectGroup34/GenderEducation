@@ -1,0 +1,33 @@
+level,Development_Regions,prop_male,prop_female
+0-10,Least Developed,68,68
+0-10,Less Developed,32,32
+0-10,More Developed,0,0
+0-10,Not Classified,0,0
+20-Oct,Least Developed,38,28
+20-Oct,Less Developed,59,72
+20-Oct,More Developed,3,0
+20-Oct,Not Classified,0,0
+20-30,Least Developed,25,18
+20-30,Less Developed,75,73
+20-30,More Developed,0,9
+20-30,Not Classified,0,0
+30-40,Least Developed,0,0
+30-40,Less Developed,89,100
+30-40,More Developed,11,0
+30-40,Not Classified,0,0
+40-50,Least Developed,0,12
+40-50,Less Developed,50,75
+40-50,More Developed,50,12
+40-50,Not Classified,0,0
+50-60,Least Developed,0,0
+50-60,Less Developed,100,0
+50-60,More Developed,0,100
+50-60,Not Classified,0,0
+60-70,Least Developed,0,0
+60-70,Less Developed,50,75
+60-70,More Developed,50,25
+60-70,Not Classified,0,0
+over 70,Least Developed,0,0
+over 70,Less Developed,0,50
+over 70,More Developed,0,50
+over 70,Not Classified,0,0
