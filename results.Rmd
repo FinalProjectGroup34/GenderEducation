@@ -134,13 +134,13 @@ ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_
 By taking development into account, we discover that in general, least developed countries seem to have lower tertiary completion rate and rates of most more developed countries are above 40%. Moreover, there exists more observations that male rates are much higher than female ones in the facet of least developed regions.It validates our hypothesis that low developed regions are more likely to have unsatisfied education situation and gender discrimination.
 
 ## Relationship among indicators
-
+At last, we want to see the association between our indicators. We divided our variables into two parts, youth education and higher education. The first part is five variables: literacy rate in youth, the complete rate in primary and lower secondary, and the out-of-school rate in primary and lower secondary. The second part for higher education is five variables: literacy rate in adults, the complete rate in upper secondary, and the out-of-school rate in upper secondary, complete 2yrs higher education rate between 25 and 29,  and attend higher education rate between 18 and 22.
 ```{r}
 library(rvest)
 library(GGally)
 myData <- as.data.frame(data_new)
 newdata = subset(myData,cr_p!= "NA",os_p!="NA")%>%filter(!is.na(lr_y))
-tem <- subset(newdata, select=c("lr_y","cr_p","cr_ls","os_p","os_ls","Sex"))
+tem <- subset(newdata, select=c("cr_p","os_p","lr_y","os_ls","cr_ls","Sex"))
 ggparcoord(tem,columns = 1:5, groupColumn = 6)+
   labs(title="Indicator in youth relationship ",
        x = 'Indicator type',
@@ -149,7 +149,7 @@ ggparcoord(tem,columns = 1:5, groupColumn = 6)+
         axis.text = element_text(size=9),
         axis.title = element_text(size=14, face="bold"))
 ```
-
+In the first parallel coordinate, we can observe that all variables have a strong relationship. The complete rate in the primary has an opposite relationship with the out-of-school rate in primary, and the out-of-school rate in primary has opposite relation with literacy in youth age. Similarly, the literacy rate has a different direction from the out-of-school rate in lower secondary but positively coordinates with the complete school rate in lower secondary.
 ```{r}
 newdata = subset(myData,lr_a!= "NA",cr_us!="NA")%>%filter(!is.na(os_us))%>%filter(!is.na(comp_higher_2yrs_2529_m))
 tem1 <- subset(newdata, select=c("lr_a","cr_us","os_us","comp_higher_2yrs_2529_m","attend_higher_1822_m","Sex"))
@@ -161,3 +161,6 @@ ggparcoord(tem1,columns = 1:5, groupColumn = 6)+
         axis.text = element_text(size=9),
         axis.title = element_text(size=14, face="bold"))
 ```
+
+
+In this parallel coordinate, the out-of-school rate in upper secondary, out-of-school rate in upper secondary, and complete 2-year higher education have a clear relationship. Most adult literacy rates positively correlate with the complete rate in upper secondary. In addition, there is no such relationship between complete 2yrs higher education rates between 25 and 29 and attend higher education rates between 18 and 22.
