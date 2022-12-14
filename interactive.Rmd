@@ -5,10 +5,9 @@
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
 <!-- Add 2 buttons -->
-<button onclick="update('complete_rate_primary')">Cases</button>
-<button onclick="update('complete_rate_lower_secondary')">Deaths</button>
-<button onclick="update('complete_rate_upper_secondary')">People Fully Vaccinated</button>
-<button onclick="update('complete_higher_2years_education')">People Fully Vaccinated</button>
+<button onclick="update('prop_male')">prop_male</button>
+<button onclick="update('prop_female')">prop_female</button>
+
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -29,8 +28,10 @@ var svg = d3.select("#my_dataviz")
   .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
+
+function update(selectedVar) {
 //Read the data
-d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/main/male.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/main/male_female.csv", function(data) {
 
   // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
   var myGroups = d3.map(data, function(d){return d.Development_Regions;}).keys()
@@ -83,7 +84,7 @@ d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/ma
   }
   var mousemove = function(d) {
     tooltip
-      .html("The exact value of<br>this cell is: " + d.prop)
+      .html("The exact value of<br>this cell is: " + d[selectedVar])
       .style("left", (d3.mouse(this)[0]+70) + "px")
       .style("top", (d3.mouse(this)[1]) + "px")
   }
@@ -106,7 +107,7 @@ d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/ma
       .attr("ry", 4)
       .attr("width", x.bandwidth() )
       .attr("height", y.bandwidth() )
-      .style("fill", function(d) { return myColor(d.prop)} )
+      .style("fill", function(d) { return myColor(d[selectedVar])} )
       .style("stroke-width", 4)
       .style("stroke", "none")
       .style("opacity", 0.8)
@@ -114,6 +115,8 @@ d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/ma
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
 })
+
+}
 
 // Add title to graph
 svg.append("text")
@@ -133,5 +136,7 @@ svg.append("text")
         .style("max-width", 400)
         .text("A short description of the take-away message of this chart.");
 
+// Initialize plot
+update('prop_male')
 
 </script>
