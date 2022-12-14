@@ -70,6 +70,7 @@ ggplot(noNA_3, aes(x = os_rate, y = os_type, fill = Sex))+
         axis.text = element_text(size=9),
         axis.title = element_text(size=14, face="bold"))
 ```      
+
 Lastly, We use the ridgeline to show the out-of-school rate in different genders. The ridgeline shows the distribution of out-of-school values for 2 groups. All graphs in primary school, lower secondary, and upper secondary show right skew, which is a good sign, and the distribution of out-of-school rates focuses on the small rates. In primary school and lower secondary, they have a parallel distribution in both genders. The out-of-school rate in lower secondary slightly move to the right. The female rates in lower secondary are higher than male rates in the peak, and then the male rates are higher than females. For upper secondary, it is clear to observe that the distribution moves to the right a lot, and the rates at peak become larger around 20%.
 
 ## Possibility of gender discrimination for certain countries in terms of educational underachievement 
@@ -88,8 +89,8 @@ map <- joinCountryData2Map(data_compare, joinCode = "NAME", nameJoinColumn = "co
 ```{r,echo=FALSE,warning=FALSE,fig.width=10,fig.height=10}
 library(RColorBrewer)
 op=par(mfrow=c(2,1))
-mapCountryData(map, nameColumnToPlot="eduyears_2024_m_Female",borderCol='black',catMethod=c(1:16),colourPalette=brewer.pal(9,'YlOrBr'))
-mapCountryData(map, nameColumnToPlot="eduyears_2024_m_Male",borderCol='black', catMethod=c(1:16),colourPalette=brewer.pal(9,'YlOrBr'))
+mapCountryData(map, nameColumnToPlot="eduyears_2024_m_Female",borderCol='black',catMethod=c(1:16),colourPalette=brewer.pal(9,'RdPu'))
+mapCountryData(map, nameColumnToPlot="eduyears_2024_m_Male",borderCol='black', catMethod=c(1:16),colourPalette=brewer.pal(9,'RdPu'))
 ```
 
 This world map shows that majority countries have no big differences between male figures and female figures. To study how two figures are different, an additional map is visualized for plotting the difference between male and female.
@@ -125,7 +126,7 @@ It is worth mentioning that outliers from two plots are highly overlapped. And m
 
 ## Relationship among development level, education achievement and gender 
 
-```{r,fig.width=8,fig.height=15,echo=FALSE}
+```{r,fig.width=8,fig.height=20,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_2529_m,reorder(country,comp_higher_2yrs_2529_m))) +
         geom_line(aes(group = country)) +
         geom_point(aes(color = Sex))+facet_grid(Development_Regions~ .,scales="free_y") +ggtitle("Tertiary completion rate vs Sex")+theme(axis.text=element_text(size=10))
