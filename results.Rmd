@@ -133,3 +133,31 @@ ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_
 
 By taking development into account, we discover that in general, least developed countries seem to have lower tertiary completion rate and rates of most more developed countries are above 40%. Moreover, there exists more observations that male rates are much higher than female ones in the facet of least developed regions.It validates our hypothesis that low developed regions are more likely to have unsatisfied education situation and gender discrimination.
 
+## Relationship among indicators
+
+```{r}
+library(rvest)
+library(GGally)
+myData <- as.data.frame(data_new)
+newdata = subset(myData,cr_p!= "NA",os_p!="NA")%>%filter(!is.na(lr_y))
+tem <- subset(newdata, select=c("lr_y","cr_p","cr_ls","os_p","os_ls","Sex"))
+ggparcoord(tem,columns = 1:5, groupColumn = 6)+
+  labs(title="Indicator in youth relationship ",
+       x = 'Indicator type',
+       y = 'value')+
+  theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+        axis.text = element_text(size=9),
+        axis.title = element_text(size=14, face="bold"))
+```
+
+```{r}
+newdata = subset(myData,lr_a!= "NA",cr_us!="NA")%>%filter(!is.na(os_us))%>%filter(!is.na(comp_higher_2yrs_2529_m))
+tem1 <- subset(newdata, select=c("lr_a","cr_us","os_us","comp_higher_2yrs_2529_m","attend_higher_1822_m","Sex"))
+ggparcoord(tem1,columns = 1:5, groupColumn = 6)+
+  labs(title="Indicator in adults relationship ",
+       x = 'Indicator type',
+       y = 'value')+
+  theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+        axis.text = element_text(size=9),
+        axis.title = element_text(size=14, face="bold"))
+```
