@@ -153,6 +153,7 @@ vcd::mosaic(level ~ Sex+ Development_Regions,d2)
 
 ## Relationship among indicators
 At last, we want to see the association between our indicators. We divided our variables into two parts, youth education and higher education. The first part is five variables: literacy rate in youth, the complete rate in primary and lower secondary, and the out-of-school rate in primary and lower secondary. The second part for higher education is five variables: literacy rate in adults, the complete rate in upper secondary, and the out-of-school rate in upper secondary, complete 2yrs higher education rate between 25 and 29,  and attend higher education rate between 18 and 22.
+
 ```{r}
 library(rvest)
 library(GGally)
