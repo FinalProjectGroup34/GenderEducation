@@ -96,8 +96,7 @@ const myColor = d3.scaleSequential()
     
 function update(selectedvar) {
 //Read the data
-d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/main/male_female.csv").then(function(data) {
-
+d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/main/data/d3data/male_female.csv").then(function(data) {
   
   const mouseover = function(event,d) {
     tooltip
