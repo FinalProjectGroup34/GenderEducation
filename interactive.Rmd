@@ -2,7 +2,7 @@
 
 ```{r,include=FALSE}
 library(tidyverse)
-data_new <- read.csv(file = 'data_new.csv')
+data_new <- read.csv(file = 'data/clean/data_new.csv')
 data3<-data_new
 d1<-data3%>%filter(!is.na(comp_higher_2yrs_2529_m))%>%mutate(level=cut(comp_higher_2yrs_2529_m, breaks=c(-Inf, 10,20,30,40,50,60,70, Inf), labels=c("< 10","10 to 20","20 to 30","30 to 40","40 to 50","50 to 60","60 to 70","> 70")))
 d2<-d1%>%select(Development_Regions,Sex,level)%>%group_by(level,Development_Regions,Sex)%>%summarise(n=n())
@@ -17,7 +17,7 @@ d5_m$prop_male<-d5_m$prop_male%>%replace_na(0)
 d5_f<-d5%>%filter(Sex=='Female')%>%select(level,Development_Regions,n)%>%arrange(level,Development_Regions)%>%group_by(level)%>%mutate(prop_female=round(n/sum(n)*100))%>%select(level,Development_Regions,prop_female)
 d5_f$prop_female<-d5_f$prop_female%>%replace_na(0)
 d5<-list(d5_m,d5_f) %>% reduce(full_join, by=c('level','Development_Regions'))
-write.csv(d5, "male_female.csv", row.names = FALSE)
+write.csv(d5, "data/d3data/male_female.csv", row.names = FALSE)
 ```
 
 

@@ -47,33 +47,33 @@ library(ggplot2)
 
 
 ```{r, include=FALSE}
-data_dhs <- read.csv(file = 'dhs.csv')
+data_dhs <- read.csv(file = 'data/raw/dhs.csv')
 
-data_cr_p<-read_excel('Completion_rate.xlsx', 
+data_cr_p<-read_excel('data/raw/Completion_rate.xlsx', 
                        sheet = "Primary",col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
 
-data_cr_ls<-read_excel('Completion_rate.xlsx', 
+data_cr_ls<-read_excel('data/raw/Completion_rate.xlsx', 
                        sheet = "Lower secondary",col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
 
-data_cr_us<-read_excel('Completion_rate.xlsx', 
+data_cr_us<-read_excel('data/raw/Completion_rate.xlsx', 
                        sheet = "Upper secondary",col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
 
-data_lr_a<-read_excel('Literacy_rate.xlsx', 
+data_lr_a<-read_excel('data/raw/Literacy_rate.xlsx', 
                        sheet = "adult literacy rate, aged 15+",
                       col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male","data source","Time period"),skip = 2 )
-data_lr_y<-read_excel('Literacy_rate.xlsx', 
+data_lr_y<-read_excel('data/raw/Literacy_rate.xlsx', 
                        sheet = "Youth literacy rate, aged 15-24",
                       col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male","data source","Time period"),skip = 2 )
 
-data_os_p<-read_excel('Out_of_school_rate.xlsx', 
+data_os_p<-read_excel('data/raw/Out_of_school_rate.xlsx', 
                        sheet = "Primary",
                       col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
 
-data_os_ls<-read_excel('Out_of_school_rate.xlsx', 
+data_os_ls<-read_excel('data/raw/Out_of_school_rate.xlsx', 
                        sheet ="Lower secondary",
                       col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
 
-data_os_us<-read_excel('Out_of_school_rate.xlsx', 
+data_os_us<-read_excel('data/raw/Out_of_school_rate.xlsx', 
                        sheet = "Upper secondary",
                       col_names = c("ISO3","country","Region","Sub-region","Development_Regions","Total","Female","Male"	,"Rural","Urban","Poorest","Second","Middle","Fourth"	,"Richest","data source","Time period","Pop_total","Pop_female","Pop_male","Pop_rural","Pop_urban","Urban percentage"),skip = 2 )
 
@@ -213,7 +213,7 @@ To validate and learn more previous finding, we want to further survey that how 
 
 ```{r, include=FALSE}
 data_new<-data%>%filter(!(is.na(lr_a) &is.na(lr_y)&is.na(cr_p)&is.na(cr_ls)&is.na(cr_us)&is.na(os_p)&is.na(os_ls)&is.na(os_us)&is.na(eduyears_2024_m)&is.na(comp_higher_2yrs_2529_m)&is.na(attend_higher_1822_m)))
-write.csv(data_new, "data_new.csv", row.names = FALSE)
+write.csv(data_new, "data/clean/data_new.csv", row.names = FALSE)
 ```
 
 Eventually, we remove those rows which are NAs in all indicators. Moreover, we keep the other rows even though they also exist missing values. Since for exploring relationship between gender and education, removing NAs seems unnecessary.  

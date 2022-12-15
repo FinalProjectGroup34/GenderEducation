@@ -2,7 +2,7 @@
 
 ## Existence of gender inequalities in education 
 ```{r,include=FALSE}
-data_new<- read.csv(file = 'data_new.csv')
+data_new<- read.csv(file = 'data/clean/data_new.csv')
 library(tidyr)
 library(ggplot2)
 library(ggridges)
