@@ -1,8 +1,8 @@
 "level","Development_Regions","prop_male","prop_female"
-"below 10","Least Developed",68,68
-"below 10","Less Developed",32,32
-"below 10","More Developed",0,0
-"below 10","Not Classified",0,0
+"< 10","Least Developed",68,68
+"< 10","Less Developed",32,32
+"< 10","More Developed",0,0
+"< 10","Not Classified",0,0
 "10 to 20","Least Developed",38,28
 "10 to 20","Less Developed",59,72
 "10 to 20","More Developed",3,0
@@ -27,7 +27,7 @@
 "60 to 70","Less Developed",50,75
 "60 to 70","More Developed",50,25
 "60 to 70","Not Classified",0,0
-"over 70","Least Developed",0,0
-"over 70","Less Developed",0,50
-"over 70","More Developed",0,50
-"over 70","Not Classified",0,0
+"> 70","Least Developed",0,0
+"> 70","Less Developed",0,50
+"> 70","More Developed",0,50
+"> 70","Not Classified",0,0
