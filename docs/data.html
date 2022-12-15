@@ -150,13 +150,13 @@ Finally, we obtained a table with 450 rows and 15 columns. Each row presents a c
 </div>
 <div id="missing-value-analysis" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Missing value analysis<a href="data.html#missing-value-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>In this plot, there are 11 indicators visualized. The left side shows how many missing values for each indicator; for example, there are around 220 missing values for the os_p (out of school for primary) variables. And the right side shows the interactions of those missing values. In the graph, 134 rows missed all 11 indicators, and 52 rows missed the last two variables: ly_a (literacy for adults) and ly_y (literacy for youth).</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>In this plot, we can clearly see the missing value in each column with the percentage. In general, there are 42.8% missing values. For the country, development regions, and have no missing value. For other indicators, the ly_a (literacy for adults) and ly_y (literacy for youth) have the highest missing percentage, 65.33%.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>In this plot, we observe the missing value in different development regions. More developed and less developed areas have higher missing observations, respectively around 50% and 80%. However, the least developed areas do not have much missing. We can see that more developed and less developed are less likely to have education issues. We deduce that there have been no specific related questionnaires and surveys about education topics of literacy, or attendance, the highest level achieved in recent years.</p>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>To validate and learn more previous finding, we want to further survey that how rows have missing values for all indicators distributed in aspect of development level. This bar plot clearly supports our finding that more developed countries might be no longer focused in education underachievement surveys.</p>
 <p>Eventually, we remove those rows which are NAs in all indicators. Moreover, we keep the other rows even though they also exist missing values. Since for exploring relationship between gender and education, removing NAs seems unnecessary.</p>
 

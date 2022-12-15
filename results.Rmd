@@ -73,6 +73,8 @@ ggplot(noNA_3, aes(x = os_rate, y = os_type, fill = Sex))+
 
 Lastly, We use the ridgeline to show the out-of-school rate in different genders. The ridgeline shows the distribution of out-of-school values for 2 groups. All graphs in primary school, lower secondary, and upper secondary show right skew, which is a good sign, and the distribution of out-of-school rates focuses on the small rates. In primary school and lower secondary, they have a parallel distribution in both genders. The out-of-school rate in lower secondary slightly move to the right. The female rates in lower secondary are higher than male rates in the peak, and then the male rates are higher than females. For upper secondary, it is clear to observe that the distribution moves to the right a lot, and the rates at peak become larger around 20%.
 
+In this chapter, we can observe that education of different gender still exists bias and inequality. The above graph illustrates that some of the female median values about the complete school rate are higher than males, but the mean values of females are lower than males. The total education data in females have a large distribution range, and there are obvious gaps and disparities between the complete school rate in females. Next step, we want to focus on education differences between males and females in certain countries.
+
 ## Possibility of gender discrimination for certain countries in terms of educational underachievement 
 
 In the above section, we validate that gender discrimination in education still exists, therefore, we want to explore more on whether it is a general pattern or only certain countries sit on this situation by visualizing higher education attendance rate and mean years of education.  
@@ -186,7 +188,11 @@ ggparcoord(tem,columns = 1:5, groupColumn = 6)+
         axis.text = element_text(size=9),
         axis.title = element_text(size=14, face="bold"))
 ```
+
+
 In the first parallel coordinate, we can observe that all variables have a strong relationship. The complete rate in the primary has an opposite relationship with the out-of-school rate in primary, and the out-of-school rate in primary has opposite relation with literacy in youth age. Similarly, the literacy rate has a different direction from the out-of-school rate in lower secondary but positively coordinates with the complete school rate in lower secondary.
+
+
 ```{r,echo=FALSE}
 newdata = subset(myData,lr_a!= "NA",cr_us!="NA")%>%filter(!is.na(os_us))%>%filter(!is.na(comp_higher_2yrs_2529_m))
 tem1 <- subset(newdata, select=c("lr_a","cr_us","os_us","comp_higher_2yrs_2529_m","attend_higher_1822_m","Sex"))
