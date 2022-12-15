@@ -10,6 +10,6 @@ results
 existence-of-gender-inequalities-in-education
 possibility-of-gender-discrimination-for-certain-countries-in-terms-of-educational-underachievement
 relationship-among-development-level-education-achievement-and-gender
-relationship-among-indicators
+accosiation-among-indicators
 interactive-component
 conclusion

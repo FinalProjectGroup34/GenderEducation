@@ -1,7 +1,7 @@
 # Results
 
 ## Existence of gender inequalities in education 
-```{r,echo=FALSE}
+```{r,include=FALSE}
 data_new<- read.csv(file = 'data_new.csv')
 library(tidyr)
 library(ggplot2)
@@ -11,7 +11,7 @@ library(tidyverse)
 
 In this chapter, we will figure out the existence of gender inequalities in education. We will focus on the literacy rate, complete school rate, and out-of-school rate in different periods.
 
-```{r,warning=FALSE}
+```{r,echo=FALSE,warning=FALSE}
 myData <- as.data.frame(data_new)
 lr_a = subset(myData,lr_a!= "NA",lr_y!="NA")
 noNA_1 <- pivot_longer(lr_a, cols=lr_a:lr_y, names_to = "lr", values_to = "lr_rate")
@@ -33,12 +33,12 @@ In short, the literacy rates in youth have higher literacy rates than the litera
 
 
 
-```{r,warning=FALSE}
+```{r,echo=FALSE,warning=FALSE}
 cr = subset(myData,cr_p!= "NA",cr_ls!="NA")
 noNA_2 <- pivot_longer(cr, cols=cr_p:cr_us, names_to = "cr_type", values_to = "c_rate")
 ggplot(noNA_2, aes(x = cr_type, y = c_rate, fill = Sex))+
   geom_boxplot(color="#88ada6",
-                 alpha=.75,
+                 alpha=.6,
                  bins = 15)+
   scale_x_discrete(limits = c("cr_us","cr_ls","cr_p"))+
   labs(title="compelete school rate and gender",
@@ -56,7 +56,7 @@ In short, some countries achieve higher rates, around 100%, but the trend of com
 
     
     
-```{r,warning=FALSE}
+```{r,echo=FALSE,warning=FALSE}
 os = subset(myData,os_p!= "NA",os_us!="NA")
 noNA_3 <- pivot_longer(os, cols=os_p:os_us, names_to = "os_type", values_to = "os_rate")
 ggplot(noNA_3, aes(x = os_rate, y = os_type, fill = Sex))+
@@ -103,7 +103,13 @@ colourPalette=brewer.pal(7,'Spectral'),missingCountryCol='white',oceanCol='white
 In this map, a diverging color palette is used. In detail, light yellow indicates neutral difference. The warm colors indicate female is higher than male while the cold colors indicate the opposite. We observe that the region with male higher than female is mainly in Africa and West Asia. Then we use a bar chart to explore this pattern more.  
 
 ```{r,fig.width=8,fig.height=12,echo=FALSE}
-ggplot(data_new%>%filter(!is.na(eduyears_2024_m))%>%select(country,Development_Regions,Sex,eduyears_2024_m)%>%pivot_wider(names_from=Sex,values_from=eduyears_2024_m)%>%gather(key='Sex',value='eduyears_2024_m',Female,Male),aes(x=eduyears_2024_m,y=fct_reorder2(country,Sex=='Female',eduyears_2024_m,.desc = FALSE),fill=Sex))+geom_bar(position = "dodge", stat = "identity",width=0.7)+theme(axis.text=element_text(size=5))
+ggplot(data_new%>%filter(!is.na(eduyears_2024_m))%>%select(country,Development_Regions,Sex,eduyears_2024_m)%>%pivot_wider(names_from=Sex,values_from=eduyears_2024_m)%>%gather(key='Sex',value='eduyears_2024_m',Female,Male),aes(x=eduyears_2024_m,y=fct_reorder2(country,Sex=='Female',eduyears_2024_m,.desc = FALSE),fill=Sex))+geom_bar(position = "dodge", stat = "identity",width=0.7,alpha=0.8)+
+  labs(title="Mean year of education, country and gender",
+       x = 'Mean year of education',
+       y = 'country')+
+  theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+        axis.text = element_text(size=9),
+        axis.title = element_text(size=14, face="bold"))
 ```
 
 
@@ -112,7 +118,13 @@ In this bar chart, it shows trend that the fewer years of education, the more th
 
 ```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(attend_higher_1822_m)), aes(attend_higher_1822_m,fct_reorder2(country,Sex=='Male',attend_higher_1822_m,.desc = FALSE))) +
-        geom_point(aes(color = Sex),size=3)+ggtitle("Higher education attendance rate vs Sex")+theme(axis.text=element_text(size=10))
+        geom_point(aes(color = Sex),size=1)+ggtitle("Higher education attendance rate vs Sex")+
+  labs(title="higher education attendance rate, country and gender",
+       x = 'higher education attendance rate',
+       y = 'country')+
+  theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+        axis.text = element_text(size=9),
+        axis.title = element_text(size=14, face="bold"))
 
 ```
 
@@ -127,7 +139,13 @@ It is worth mentioning that outliers from two plots are highly overlapped. And m
 ```{r,fig.width=8,fig.height=20,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_2529_m,fct_reorder2(country,Sex=='Male',comp_higher_2yrs_2529_m,.desc = FALSE))) +
       geom_line(aes(group = country)) +
-        geom_point(aes(color = Sex),size=3)+facet_grid(Development_Regions~ .,scales="free_y") +ggtitle("Tertiary completion rate vs Sex")+theme(axis.text=element_text(size=10))
+        geom_point(aes(color = Sex),size=1)+facet_grid(Development_Regions~ .,scales="free_y")+
+  labs(title="Tertiary completion rate, country, development level and gender",
+       x = 'Tertiary completion rate',
+       y = 'country')+
+  theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+        axis.text = element_text(size=9),
+        axis.title = element_text(size=14, face="bold"))
 ```
 
 By taking development into account, we discover that in general, least developed countries seem to have lower tertiary completion rate and rates of most more developed countries are above 40%. Moreover, there exists more observations that male rates are much higher than female ones in the facet of least developed regions.It validates our hypothesis that low developed regions are more likely to have unsatisfied education situation and gender discrimination.
@@ -144,7 +162,7 @@ d2$Development_Regions <- droplevels(d2$Development_Regions)
 levels(d2$Development_Regions)
 ```
 
-```{r,fig.width=8,fig.height=5,echo=TRUE}
+```{r,fig.width=8,fig.height=5,echo=FALSE}
 vcd::mosaic(level ~ Sex+ Development_Regions,d2)
 ```
 
@@ -154,7 +172,7 @@ We categorized mean year of education into three cuts and visualized its relatio
 ## Accosiation among indicators
 At last, we want to see the association between our indicators. We divided our variables into two parts, youth education and higher education. The first part is five variables: literacy rate in youth, the complete rate in primary and lower secondary, and the out-of-school rate in primary and lower secondary. The second part for higher education is five variables: literacy rate in adults, the complete rate in upper secondary, and the out-of-school rate in upper secondary, complete 2yrs higher education rate between 25 and 29,  and attend higher education rate between 18 and 22.
 
-```{r}
+```{r,echo=FALSE}
 library(rvest)
 library(GGally)
 myData <- as.data.frame(data_new)
@@ -169,7 +187,7 @@ ggparcoord(tem,columns = 1:5, groupColumn = 6)+
         axis.title = element_text(size=14, face="bold"))
 ```
 In the first parallel coordinate, we can observe that all variables have a strong relationship. The complete rate in the primary has an opposite relationship with the out-of-school rate in primary, and the out-of-school rate in primary has opposite relation with literacy in youth age. Similarly, the literacy rate has a different direction from the out-of-school rate in lower secondary but positively coordinates with the complete school rate in lower secondary.
-```{r}
+```{r,echo=FALSE}
 newdata = subset(myData,lr_a!= "NA",cr_us!="NA")%>%filter(!is.na(os_us))%>%filter(!is.na(comp_higher_2yrs_2529_m))
 tem1 <- subset(newdata, select=c("lr_a","cr_us","os_us","comp_higher_2yrs_2529_m","attend_higher_1822_m","Sex"))
 ggparcoord(tem1,columns = 1:5, groupColumn = 6)+
