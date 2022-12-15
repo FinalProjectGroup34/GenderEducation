@@ -185,28 +185,37 @@ data$attend_higher_1822_m<-data$attend_higher_1822_m*100
 
 ## Missing value analysis
 
+In this part, we will deal with our missing data and use four kinds of graphs to see the distribution and percentage of our missing value. There are no missing values for country, development_regions, and sex, so we will focus on the rest of the variables.
+
+```{r, echo=FALSE}
+visdat::vis_miss(data) + 
+  labs(title = "The percentage of missing data")
+```
+
+In this plot, we can clearly see the missing value in each column with the percentage. In general, there are 41.4% missing values in total. For the country, development regions, and have no missing value. For other indicators, the ly_a (literacy for adults) and ly_y (literacy for youth) have the highest missing percentage, 65.33%. After observing the percentage of missing values, we want to know the specific count for each and the missing counts in the intersection part.
+
+
 ```{r, echo=FALSE}
 gg_miss_upset(data,nsets = 11)
 ```   
 
-
-In this plot, there are 11 indicators visualized. The left side shows how many missing values for each indicator; for example, there are around 220 missing values for the os_p (out of school for primary) variables. And the right side shows the interactions of those missing values. In the graph, 134 rows missed all 11 indicators, and 52 rows missed the last two variables: ly_a (literacy for adults) and ly_y (literacy for youth). 
-
-```{r, echo=FALSE}
-vis_miss(data)
-```
-
-In this plot, we can clearly see the missing value in each column with the percentage. In general, there are 42.8% missing values. For the country, development regions, and have no missing value. For other indicators, the ly_a (literacy for adults) and ly_y (literacy for youth) have the highest missing percentage, 65.33%.
+In this plot, there are 11 indicators visualized. The left side shows how many missing values for each indicator; for example, there are around 220 missing values for the os_p (out of school for primary) variables. And the right side shows the interactions of those missing values. In the graph, 134 rows missed all 11 indicators, and 52 rows missed the last two variables: ly_a (literacy for adults) and ly_y (literacy for youth). Next, we want to see if the missing value is related to our category of development regions.
 
 ```{r, echo=FALSE}
 gg_miss_var(data,
-            facet = Development_Regions,show_pct = TRUE)
+            facet = Development_Regions,show_pct = TRUE)+ labs(title = "The missing data with development regions")
 ```
 
 In this plot, we observe the missing value in different development regions. More developed and less developed areas have higher missing observations, respectively around 50% and 80%. However, the least developed areas do not have much missing. We can see that more developed and less developed are less likely to have education issues. We deduce that there have been no specific related questionnaires and surveys about education topics of literacy, or attendance, the highest level achieved in recent years.
 
 ```{r, echo=FALSE}
-data%>%filter(is.na(lr_a),is.na(lr_y),is.na(cr_p),is.na(cr_ls),is.na(cr_us),is.na(os_p),is.na(os_ls),is.na(os_us),is.na(eduyears_2024_m),is.na(comp_higher_2yrs_2529_m),is.na(attend_higher_1822_m))%>%group_by(Development_Regions)%>%summarise(all_missing_value_n=n())%>%ggplot(aes(y=all_missing_value_n, x=Development_Regions))+geom_bar(stat="identity")
+data%>%filter(is.na(lr_a),is.na(lr_y),is.na(cr_p),is.na(cr_ls),is.na(cr_us),is.na(os_p),is.na(os_ls),is.na(os_us),is.na(eduyears_2024_m),is.na(comp_higher_2yrs_2529_m),is.na(attend_higher_1822_m))%>%group_by(Development_Regions)%>%summarise(all_missing_value_n=n())%>%ggplot(aes(y=all_missing_value_n, x=Development_Regions))+geom_bar(stat="identity")+
+  labs(title="all missing value in different development regions",
+       x = 'development regions',
+       y = 'missing value counts')+
+  theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
+        axis.text = element_text(size=9),
+        axis.title = element_text(size=14, face="bold"))
 ```
 
 To validate and learn more previous finding, we want to further survey that how rows have missing values for all indicators distributed in aspect of development level. This bar plot clearly supports our finding that more developed countries might be no longer focused in education underachievement surveys.
