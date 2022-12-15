@@ -41,18 +41,10 @@ const y = d3.scaleBand()
 const myColor = d3.scaleSequential()
     .interpolator(d3.interpolatePuRd)
     .domain([1,100])
-    
-function update(selectedvar) {
-//Read the data
-d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/main/male_female.csv", function(data) {
 
-  // Labels of row and columns -> unique identifier of the column called 'group' and 'constiable'
-  const myGroups = d3.map(data, function(d){return d.Development_Regions;}).keys()
-  const myvars = d3.map(data, function(d){return d.level;}).keys()
 
-    
-  // Build X scales and axis:
-  x.domain(myGroups)
+ // Build X scales and axis:
+  x.domain(["Least Developed","Less Developed","More Developed","Not Classified"])
   svg.append("g")
     .style("font-size", 12)
     .attr("transform", `translate(0, ${height})`)
@@ -60,7 +52,7 @@ d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/ma
     .select(".domain").remove()
     
   // Build Y scales and axis:
-  y.domain(myvars)
+  y.domain(["below 10","10 to 20","20 to 30","30 to 40","40 to 50","50 to 60","60 to 70","over 70"])
 
   svg.append("g")
     .style("font-size", 12)
@@ -76,6 +68,14 @@ d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/ma
     .style("border-width", "2px")
     .style("border-radius", "5px")
     .style("padding", "4px")
+    
+function update(selectedvar) {
+//Read the data
+d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/main/male_female.csv", function(data) {
+
+  // Labels of row and columns -> unique identifier of the column called 'group' and 'constiable'
+  const myGroups = d3.map(data, function(d){return d.Development_Regions;}).keys()
+  const myvars = d3.map(data, function(d){return d.level;}).keys()
 
   
   const mouseover = function(d) {
