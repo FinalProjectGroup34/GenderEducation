@@ -110,9 +110,10 @@ d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/ma
   const mousemove = function(event,d) {
     tooltip
       .html(d[selectedvar]+'% of countries with tertiary completion rate in range: '+d.level+'% are '+d.Development_Regions)
-      .style("left", ((event.x)+50)+"px")
-      .style("top", ((event.y)+15)+ "px")
+      .style("left", d3.pointer(event)[1])
+      .style("top", d3.pointer(event)[0])
       .style("opacity", 0.7)
+      .style("font-size", "12px")
   }
   
   

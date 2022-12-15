@@ -5,7 +5,7 @@ In our Project, we want to figure out if gender inequalities still exist in educ
 
 After knowing the distribution, we will work out whether countries with high rates of educational underachievement have a greater probability of sitting on gender inequality. We picked up the countries with high educational underachievement and low educational underachievement to observe gender education.
 
-Thirdly, we will divide the countries into two groups by using the income: least developed and more developed, and observe the relationship between the development degree of countries and gender education. 
+Thirdly, we will divide the countries into three groups by using the development and income: least developed, less developed and more developed, and observe the relationship among the development degree of countries, education and gender disparities. 
 
 In the past, gender stereotypes and biases are rooted and it shows in any other field. We need to study if those gender stereotypes are still present. Furthermore, Gender data in education is a significant indicator in order to figure out the gender equality issue and predict the achievement of future improvement in females. 
 

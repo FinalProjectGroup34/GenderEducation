@@ -7,9 +7,9 @@ sources
 cleaning-transformation
 missing-value-analysis
 results
-existence-of-gender-inequalities-in-education
-possibility-of-gender-discrimination-for-certain-countries-in-terms-of-educational-underachievement
-relationship-among-development-level-education-achievement-and-gender
 accosiation-among-indicators
+existence-of-gender-inequalities-in-education
+possibility-of-gender-discrimination-for-countries-with-education-underachievements
+relationship-among-development-level-education-achievement-and-gender
 interactive-component
 conclusion

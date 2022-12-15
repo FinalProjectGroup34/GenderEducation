@@ -86,10 +86,10 @@
 </ul></li>
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#existence-of-gender-inequalities-in-education"><i class="fa fa-check"></i><b>4.1</b> Existence of gender inequalities in education</a></li>
-<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#possibility-of-gender-discrimination-for-certain-countries-in-terms-of-educational-underachievement"><i class="fa fa-check"></i><b>4.2</b> Possibility of gender discrimination for certain countries in terms of educational underachievement</a></li>
-<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#relationship-among-development-level-education-achievement-and-gender"><i class="fa fa-check"></i><b>4.3</b> Relationship among development level, education achievement and gender</a></li>
-<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#accosiation-among-indicators"><i class="fa fa-check"></i><b>4.4</b> Accosiation among indicators</a></li>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#accosiation-among-indicators"><i class="fa fa-check"></i><b>4.1</b> Accosiation among indicators</a></li>
+<li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#existence-of-gender-inequalities-in-education"><i class="fa fa-check"></i><b>4.2</b> Existence of gender inequalities in education</a></li>
+<li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#possibility-of-gender-discrimination-for-countries-with-education-underachievements"><i class="fa fa-check"></i><b>4.3</b> Possibility of gender discrimination for countries with education underachievements</a></li>
+<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#relationship-among-development-level-education-achievement-and-gender"><i class="fa fa-check"></i><b>4.4</b> Relationship among development level, education achievement and gender</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>5</b> Interactive component</a></li>
 <li class="chapter" data-level="6" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>6</b> Conclusion</a></li>
@@ -185,6 +185,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
