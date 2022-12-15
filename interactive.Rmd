@@ -21,6 +21,9 @@ write.csv(d5, "male_female.csv", row.names = FALSE)
 ```
 
 
+
+
+
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v7.js">  </script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
@@ -74,7 +77,7 @@ const myColor = d3.scaleSequential()
     .select(".domain").remove()
     
   // Build Y scales and axis:
-  y.domain(["below 10","10 to 20","20 to 30","30 to 40","40 to 50","50 to 60","60 to 70","over 70"])
+  y.domain(["< 10","10 to 20","20 to 30","30 to 40","40 to 50","50 to 60","60 to 70","> 70"])
 
   svg.append("g")
     .style("font-size", 8)
@@ -156,12 +159,22 @@ svg.append("text")
 // Add subtitle to graph
 svg.append("text")
         .attr("x", 0)
-        .attr("y", -20)
+        .attr("y", -30)
         .attr("text-anchor", "left")
-        .style("font-size", "10px")
+        .style("font-size", "14px")
         .style("fill", "grey")
-        .style("max-width", 500)
-        .text("Try clicking the above button or moving the pointer on heatmap");
+        .style("max-width", 400)
+        .text("Click the above button to view the association with Sex");
+        
+// Add subtitle to graph
+svg.append("text")
+        .attr("x", 0)
+        .attr("y", -15)
+        .attr("text-anchor", "left")
+        .style("font-size", "14px")
+        .style("fill", "grey")
+        .style("max-width", 400)
+        .text("Move your pointer to discover detail values");
 
 </script>
 
