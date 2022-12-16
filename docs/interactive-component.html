@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Interactive component | Gender and Education</title>
   <meta name="description" content="Chapter 5 Interactive component | Gender and Education" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Interactive component | Gender and Education" />
   <meta property="og:type" content="book" />
@@ -201,10 +201,10 @@ d3.csv("https://raw.githubusercontent.com/FinalProjectGroup34/GenderEducation/ma
   const mousemove = function(event,d) {
     tooltip
       .html(d[selectedvar]+'% of countries with tertiary completion rate in range: '+d.level+'% are '+d.Development_Regions)
-      .style("left", d3.pointer(event)[1])
-      .style("top", d3.pointer(event)[0])
+      .style("left", d3.pointer(event)[1]+"px")
+      .style("top", d3.pointer(event)[0]+"px")
       .style("opacity", 0.7)
-      .style("font-size", "12px")
+      .style("font-size", "14px")
   }
   
   

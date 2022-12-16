@@ -1,7 +1,7 @@
 # Proposal
 
 ## Research topic
-In our Project, we want to determine if gender inequalities still exist in education and the world distribution of education inequalities in different countries. We will use special indicators to show the gender inequalities in education, like out-of-school rates, Schooling completion, and literacy rate. Those data will focus on primary and secondary age. To collect more information for our education distribution, we also need to know some adult surveys, which include higher education attendance, tertiary completion rate, and mean years of education. 
+In our project, we want to determine if gender inequalities still exist by using education as a projection and studying the world distribution of education inequalities in different countries. We will use special indicators to show the gender inequalities in education, like out-of-school rates, Schooling completion, and literacy rate. Those data will focus on primary and secondary age. To collect more information for our education distribution, we also need to know some adult surveys, which include higher education attendance, tertiary completion rate, and mean years of education. 
 
 After knowing the distribution, we will work out whether countries with high rates of educational underachievement have a greater probability of sitting on gender inequality. We picked up the countries with high educational underachievement and low educational underachievement to observe gender education.
 
