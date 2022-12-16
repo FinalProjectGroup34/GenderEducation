@@ -1,13 +1,13 @@
 # Proposal
 
 ## Research topic
-In our Project, we want to figure out if gender inequalities still exist in education and the world distribution of education inequalities in different countries. We will use some special indicators to show the gender inequalities in education, like out-of-school rates, Schooling completion, and literacy rate. Those data will focus on primary and secondary age. For collecting more information for our education distribution, we also need to know some adult surveys, which include higher education attendance, tertiary completion rate, and mean years of education. 
+In our Project, we want to determine if gender inequalities still exist in education and the world distribution of education inequalities in different countries. We will use special indicators to show the gender inequalities in education, like out-of-school rates, Schooling completion, and literacy rate. Those data will focus on primary and secondary age. To collect more information for our education distribution, we also need to know some adult surveys, which include higher education attendance, tertiary completion rate, and mean years of education. 
 
 After knowing the distribution, we will work out whether countries with high rates of educational underachievement have a greater probability of sitting on gender inequality. We picked up the countries with high educational underachievement and low educational underachievement to observe gender education.
 
-Thirdly, we will divide the countries into three groups by using the development and income: least developed, less developed and more developed, and observe the relationship among the development degree of countries, education and gender disparities. 
+Thirdly, we will divide the countries into three groups using the development and income: least developed, less developed, and more developed, and observe the relationship among the development degree of countries, education, and gender disparities.  
 
-In the past, gender stereotypes and biases are rooted and it shows in any other field. We need to study if those gender stereotypes are still present. Furthermore, Gender data in education is a significant indicator in order to figure out the gender equality issue and predict the achievement of future improvement in females. 
+In the past, gender stereotypes and biases are rooted, and it shows in any other field. We need to study if those gender stereotypes are still present. Furthermore, Gender data in education is a significant indicator in order to figure out the gender equality issue and predict the achievement of future improvement in females. 
 
 In this research topic, we will collect the demographic of females and males of various ages and analyze gender education in different indicators. 
 
@@ -20,7 +20,7 @@ Research Question:
 3.	Observe the relationship between the development degree of countries and gender education
 
 ## Data availability
-Based on our research topic, education at younger ages and in different gender is studied. After browsing, we found this website [UNICEF](https://data.unicef.org), which is a strong data source about children and women all around the world. Our proposed datasets are from its Multiple Indicator Cluster Surveys (MICS) database. This database owns a great many indicators for each country related to children and women, such as children marriage rate and women HIV rate, which means each dataset is in comma separated values(csv) format and has columns of different year, country name and indicators. UNICEF gathers these primary data by collecting from their house-by-house interviews, indicating the reliability of its data source. In detail, there are several datasets used in this project with following indicators:
+Based on our research topic, education at younger ages and in different gender is studied. After browsing, we found this website [UNICEF](https://data.unicef.org), a strong data source about children and women all around the world. Our proposed datasets are from its Multiple Indicator Cluster Surveys (MICS) database. This database owns many indicators for each country related to children and women, such as children’s marriage rate and women's HIV rate. Each dataset is in comma-separated values(CSV) format and has columns of a different year, country name, and indicators. UNICEF gathers these primary data from their house-by-house interviews, indicating the reliability of its data source. In detail, there are several datasets used in this project with the following indicators:
 
   1. Out-of-school rates for different gender and age ranges
   
@@ -30,24 +30,24 @@ Based on our research topic, education at younger ages and in different gender i
   
 To be more specific, the completion rate is the percentage of the cohort of children or young people three to five years older than the intended age for the last grade of each level of education (primary, lower secondary, or upper secondary) who have completed that level of education. Out-of-school children rate is the percentage of children or young people in the official age range for a given level of education who are not attending either pre-primary, primary, secondary, or higher levels of education. Lastly, the literacy rate is the percentage of the population that can both read and write a short, simple statement about their everyday life. These data help to illustrate gender inequality in education. 
  
-To expand our datasets, we also found [UNESCO](https://www.education-inequalities.org), which is a world inequality database on education data. It brings together data from DHS, MICS, and other national household surveys and learning assessments from over 160 countries. Users can compare education outcomes between countries and between groups within countries, according to factors that are associated with inequality, including wealth, gender, ethnicity, and location. Therefore, we traced DHS and found the source. The Demographic and Health Surveys  Program ([DHS](https://dhsprogram.com)) collects data through more than 400 surveys in over 90 countries. This dataset provides more indicators:
+To expand our datasets, we also found [UNESCO](https://www.education-inequalities.org), a world inequality database on education data. It combines data from DHS, MICS, and other national household surveys and learning assessments from over 160 countries. Users can compare education outcomes between countries and groups within countries according to factors associated with inequality, including wealth, gender, ethnicity, and location. Therefore, we traced DHS and found the source. The Demographic and Health Surveys  Program ([DHS](https://dhsprogram.com)) collects data through more than 400 surveys in over 90 countries. This dataset provides more indicators:
   
   1. Higher education attendance: Percentage of people aged 18-22 years attending higher education.
   
-  2. Tertiary completion rate: Percentage of people aged 25–29/30–34, who have completed at least two/four years of higher education.
+  2. Tertiary completion rate: Percentage of people aged 25–29/30–34 who have completed at least two/four years of higher education.
   
-  3. Mean years of education: Average number of years of schooling attained for the age group 20–24 years.
+  3. Mean years of education: The average number of years of schooling attained for the age group 20–24 years.
   
   
-Therefore, we would combine all these datasets with variability of country and gender. We would categorize a country based on its income level, such as low-income, medium-income and high-income, investigating whether low-income countries have higher presence of gender inequality in education. 
+Therefore, we would combine all these datasets with the variability of country and gender. We would categorize a country based on its income levels, such as low-income, medium-income, and high-income, investigating whether low-income countries have a higher presence of gender inequality in education. 
 
 However, there are some problems in our proposed dataset:
   
-  1. Trend of change in education over years cannot be observed, which limits us to forecast time-series processes. 
+  1. Trends of change in education over the years cannot be observed, which limits us to forecast time-series processes. 
   
   2. Since surveys and interviews were used for collection, the survey years for each country may range from 2010 to 2022. 
   
-  3. Since datasets are combined from two data sources and many different indicators are considered, some countries might miss certain indicators. 
+  3. Since datasets are combined from two data sources and many different indicators are considered, some countries might need to catch certain indicators. 
 
 
 

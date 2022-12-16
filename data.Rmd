@@ -31,11 +31,12 @@ There are over 100 indicators regarding gender and education from our data sourc
 
 Several problems are discovered:
 
-1. The time period of data collection ranges from 2010 to 2021. Most recent data is used for countries with multiple years of data. Therefore, data of some countries may be collected in 2010 while some may be collected in 2021. It raises the risk of comparison inequality. Developments over the past 10 years have likely increased access to education.
+1. The period of data collection ranges from 2010 to 2021. Most recent data is used for countries with multiple years of data. Therefore, data from some countries may be collected in 2010 while some may be collected in 2021. It raises the risk of comparison inequality. Developments over the past 10 years have likely increased access to education.
 
-2. Since all data are collected from household surveys, the reliability of this kind of house-to-house survey is questionable. This is also the common problem of primary data source. 
+2. Since all data are collected from household surveys, the reliability of this kind of house-to-house survey is questionable. This is also a common problem of the primary data source. 
 
-3. There are many missing values in our proposed dataset. Our missing value analysis implies there are more missing values for more developed countries. Reasons and details are discussed in Section 3.3. Besides, as the dataset is assembled from multiple data sources, the incidence of missing values increases. Most countries lack at least one indicator.
+3. There are many missing values in our proposed dataset. Our missing value analysis implies there are more missing values for more developed countries. The reasons and details are discussed in Section 3.3. Besides, as the dataset is assembled from multiple data sources, missing values increase. Most countries lack at least one indicator.
+
 
 ```{r setup, include=FALSE}
 library(dplyr)
@@ -84,11 +85,11 @@ data_os_us<-read_excel('data/raw/Out_of_school_rate.xlsx',
 
 
 Since we collected 4 datasets, cleaning and transformation are performed separately. 
-In datasets of completion rate, literacy rate and out-of school rate, worksheets are separated using *read_excel* from *readxl* package. Columns orther than country name, development level and indicators are all removed, leaving us a 202 $*$ 4 dataset. Ordinal Regional development level is categorized into 4 levels, listed sequentially: not classified, least developed, less developed, and more developed. After transforming with *pivot_longer* (i.e, creating a categorical column for gender), each dataset is now with 404 rows and 4 columns.These eight dataframes are combined first by countiry names, development level and sex.
+In datasets of completion rate, literacy rate and out-of-school rate, worksheets are separated using *read_excel* from *readxl* package. Columns orther than country name, development level and indicators are all removed, leaving us a 202 $*$ 4 dataset. Ordinal Regional development level is categorized into 4 levels, listed sequentially: not classified, least developed, less developed, and more developed. After transforming with *pivot_longer* (i.e, creating a categorical column for gender), each dataset is now with 404 rows and 4 columns. These eight data frames are combined first by country names, development level and sex.
 
-In addition, the other three indicators are all in one dataset. This dataset contains records from multiple years. Maximum values for each country are chosen instead of most recent values, since it is discovered that some countries have most recent values of 0 but valid numbers for other records. To uniform with other rates, tertiary completion rate and high education attendance rate are multiplied by 100. There are over 300 countries/regions in this dataset, which means around 25 countries only exist here. Therefore, when combining all data frames together by country names, we observed that these 25 countries have NA for development level. Development level is a key criteria for our purpose and we do not want to remove these data as they have valid records. Fortunately, these data has variables of income level. Therefore, we decided to use income level to categorize these countries. In detail, low income countries goes into least developed. Lower middle and upper income countries goes into less developed and high income ones are more developed.
+In addition, the other three indicators are all in one dataset. This dataset contains records from multiple years. Maximum values for each country are chosen instead of the most recent values since it is discovered that some countries have the most recent values of 0 but valid numbers for other records. To uniform with other rates, tertiary completion rate and high education attendance rate are multiplied by 100. There are over 300 countries/regions in this dataset, which means around 25 countries only exist here. Therefore, when combining all data frames together by country names, we observed that these 25 countries have NA for development level. Development level is a key criteria for our purpose and we do not want to remove these data as they have valid records. Fortunately, these data have variables of income level. Therefore, we decided to use income level to categorize these countries. In detail, low-income countries go into the least developed. Lower middle and upper-income countries go into less developed and high-income ones are more developed.
 
-Finally, we obtained a table with 450 rows and 15 columns. Each row presents a country/region. 11 columns records over 1900 indicator data points and other columns are country, development level, sex and income group.
+Finally, we obtained a table with 450 rows and 15 columns. Each row presents a country/region. 11 columns record over 1900 indicator data points and other columns are country, development level, sex, and income group.
 
 
 ```{r, include=FALSE}

@@ -1,7 +1,13 @@
 # Results
 
 ## Accosiation among indicators
-
+```{r,include=FALSE}
+data_new<- read.csv(file = 'data/clean/data_new.csv')
+library(tidyr)
+library(ggplot2)
+library(ggridges)
+library(tidyverse)
+```
 Firstly, we want to see the association between our indicators. We divided our variables into two parts, foundemantal(youth) education and higher education. The first part is five variables: literacy rate in youth, the complete rate in primary and lower secondary, and the out-of-school rate in primary and lower secondary. The second part for higher education is five variables: literacy rate in adults, the complete rate in upper secondary, and the out-of-school rate in upper secondary, complete 2yrs higher education rate between 25 and 29,  and attend higher education rate between 18 and 22.
 
 ```{r,fig.width=8,echo=FALSE}
@@ -11,7 +17,7 @@ myData <- as.data.frame(data_new)
 newdata = subset(myData,cr_p!= "NA",os_p!="NA")%>%filter(!is.na(lr_y))
 tem <- subset(newdata, select=c("cr_p","os_p","lr_y","os_ls","cr_ls","Sex"))
 ggparcoord(tem,columns = 1:5, groupColumn = 6)+
-  labs(title="Indicator in youth relationship ",
+  labs(title="Relationship between indicators of youth",
        x = 'Indicator type',
        y = 'value')+
   theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
@@ -27,7 +33,7 @@ In the first parallel coordinate, we can observe that all variables have a stron
 newdata = subset(myData,lr_a!= "NA",cr_us!="NA")%>%filter(!is.na(os_us))%>%filter(!is.na(comp_higher_2yrs_2529_m))
 tem1 <- subset(newdata, select=c("lr_a","cr_us","os_us","comp_higher_2yrs_2529_m","attend_higher_1822_m","Sex"))
 ggparcoord(tem1,columns = 1:5, groupColumn = 6)+
-  labs(title="Indicator in adults relationship ",
+  labs(title="Relationship between indicators of adults ",
        x = 'Indicator type',
        y = 'value')+
   theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
@@ -41,13 +47,7 @@ In this parallel coordinate, the out-of-school rate in upper secondary, out-of-s
 
 
 ## Existence of gender inequalities in education 
-```{r,include=FALSE}
-data_new<- read.csv(file = 'data/clean/data_new.csv')
-library(tidyr)
-library(ggplot2)
-library(ggridges)
-library(tidyverse)
-```
+
 
 In this chapter, we will figure out the existence of gender inequalities in education. We will focus on the literacy rate, complete school rate, and out-of-school rate in different periods.
 
@@ -117,15 +117,15 @@ In this chapter, we can observe that education of different gender still exists 
 
 ## Possibility of gender discrimination for countries with education underachievements 
 
-In the above section, we validate that gender discrimination in education still exists, therefore, we want to explore more on whether it is a general pattern or only certain countries sit on this situation by visualizing primary out of school rate, mean years of education and higher education attendance rate so that both foundamental and higher education can be learned.
+In the above section, we validate that gender discrimination in education still exists. Therefore, we want to explore whether it is a general pattern or only certain countries sit in this situation by visualizing the primary out-of-school rate, mean years of education, and higher education attendance rate so that both fundamental and higher education can be learned.
 
 
 ```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(os_p)), aes(os_p,fct_reorder2(country,Sex=='Male',os_p,.desc = FALSE))) +
   geom_line(aes(group = country)) +
         geom_point(aes(color = Sex),size=2)+ggtitle("Higher education attendance rate vs Sex")+
-  labs(title="Out of primary school rate rate, country and gender",
-       x = 'Out of primary school rate rate',
+  labs(title="Out-of-school rate in primary, country and gender",
+       x = 'Out-of-school rate in primary',
        y = 'country')+
   theme(plot.title = element_text(size = 12, face = "bold", hjust = 0.5),
         axis.text = element_text(size=9),
@@ -134,7 +134,7 @@ ggplot(data_new%>%filter(!is.na(os_p)), aes(os_p,fct_reorder2(country,Sex=='Male
 ```
 
 
-In this plot, we explore the out of school rate of primary schooling. It is clear that when the rate becomes higher than 5%, female rates become higher than male rates, which indicates that females seem have less opportunity of going to primary school than males in those countries with higher out-of-school rate.
+In this plot, we explore the out-of-school rate of primary schooling. It is clear that when the rate becomes higher than 5%, female rates become higher than male rates, which indicates that females seem to have less opportunity of going to primary school than males in those countries with higher out-of-school rates.
 
 
 ```{r,fig.width=8,include=FALSE}
@@ -151,14 +151,14 @@ mapCountryData(map, nameColumnToPlot="eduyears_2024_m_Female",borderCol='black',
 mapCountryData(map, nameColumnToPlot="eduyears_2024_m_Male",borderCol='black', catMethod=c(1:16),colourPalette=brewer.pal(9,'RdPu'))
 ```
 
-These world maps show that majority countries have no big differences between male figures and female figures. To study how two figures are different, an additional map is visualized for plotting the difference between male and female.
+The indicator named"eduyears_2024_m" is th average number of years of schooling attained for the age group 20–24 years.These world maps show that most countries have no big differences between male and female figures. To study how the two figures are different, an additional map is visualized for plotting the difference between males and females.
 
 ```{r,echo=FALSE,warning=FALSE,fig.width=10}
 mapCountryData(map, nameColumnToPlot="eduyears_2024_m_difference",borderCol='black',
 colourPalette=brewer.pal(7,'Spectral'),missingCountryCol='white',oceanCol='white')
 ```
 
-In this map, a diverging color palette is used. In detail, light yellow indicates neutral difference. The warm colors indicate female is higher than male while the cold colors indicate the opposite. We observe that the region with male higher than female is mainly in Africa and West Asia. Then we use a bar chart to explore this pattern more.  
+In this map, a diverging color palette is used. In detail, light yellow indicates a neutral difference. The warm colors indicate that female is higher than the male, while the cold colors indicate the opposite. We observe that the region with males higher than female is mainly in Africa and West Asia. Then we use a bar chart to explore this pattern more.   
 
 ```{r,fig.width=8,fig.height=12,echo=FALSE}
 ggplot(data_new%>%filter(!is.na(eduyears_2024_m))%>%select(country,Development_Regions,Sex,eduyears_2024_m)%>%pivot_wider(names_from=Sex,values_from=eduyears_2024_m)%>%gather(key='Sex',value='eduyears_2024_m',Female,Male),aes(x=eduyears_2024_m,y=fct_reorder2(country,Sex=='Female',eduyears_2024_m,.desc = FALSE),fill=Sex))+geom_bar(position = "dodge", stat = "identity",width=0.7,alpha=0.8)+
@@ -186,15 +186,15 @@ ggplot(data_new%>%filter(!is.na(attend_higher_1822_m)), aes(attend_higher_1822_m
 ```
 
 
-In this Cleveland plot, for countries with higher education attendance rate over 10%, more countries have female rates higher than male rates while countries with below 10% rates are more to have male rates higher than female rates, even though the difference is not as big as mean education year. This not only helps indicate that countries with a low higher education attendance rate are having gender inequality problem, but also illustrates that in those countries with high levels of education, females own better figures in higher education.
+In this Cleveland plot, for countries with higher education attendance rates over 10%, more countries have female rates higher than male rates. In comparison, countries with below 10% rates are more to have higher male rates than female rates, even though the difference is not as big as the mean education year. This not only helps indicate that countries with a low higher education attendance rate are having gender inequality problems but also illustrates that in those countries with high levels of education, females own better figures in higher education.
 
- In the meanwhile, there are also some outliers, such as Nepal, Tajikistan, Bangladesh, Kenya, Somalia, etc. They have higher male rates but with decent higher education attendance rate. 
+ Meanwhile, there are also some outliers, such as Nepal, Tajikistan, Bangladesh, Kenya, Somalia, etc. They have higher male rates but with decent higher education attendance rate. 
 
-It is worth mentioning that outliers from two plots are highly overlapped. And most outlier countries lie in below average cluster for at least one plot. This situation may also involve in other aspects. Therefore, we would investigate the influence of financial and development level of countries. 
+It is worth mentioning that outliers from the two plots are highly overlapped. And most outlier countries lie in the below-average cluster for at least one plot. This situation may also involve other aspects. Therefore, we would investigate the influence of the financial and development level of countries.
 
 ## Relationship among development level, education achievement and gender 
 
-The above section demonstrates that countries with education underachievement have more possibility of remaining gender preconception. In this section, how development level, education level and gender is related is explored by visualizing tertiary completion rate and mean year of education.
+The above section demonstrates that countries with education underachievement have more possibility of remaining gender preconceptions. In this section, how development level, education level, and gender is related is explored by visualizing tertiary completion rate and mean year of education.
 
 
 ```{r,fig.width=8,fig.height=20,echo=FALSE}
@@ -209,7 +209,7 @@ ggplot(data_new%>%filter(!is.na(comp_higher_2yrs_2529_m)), aes(comp_higher_2yrs_
         axis.title = element_text(size=14, face="bold"))
 ```
 
-After taking development into account, we discover from this Cleveland plot that in general, least developed countries seem to have lower tertiary completion rate and rates of most more developed countries are above 40%. Moreover, there exists more observations that male rates are much higher than female ones in the facet of least developed regions. And our outliers from previous section mostly lie in this facet. It validates our hypothesis that lower developed regions are more likely to have unsatisfied education situation and gender discrimination. On the other hand, unlike indicators of fundamental education, this plot of tertiary completion rate presents  that for most countries in more developed and less developed facets, female rates are higher than male ones, implying again that female has good performance in higher education. 
+After taking development into account, we discover from this Cleveland plot that, in general, least developed countries seem to have lower tertiary completion rates, and rates of most more developed countries are above 40%. Moreover, there is more observation that male rates are much higher than female ones in the least developed regions. And our outliers from the previous section mostly lie in this facet. It validates our hypothesis that lower-developed regions are more likely to have unsatisfied education situations and gender discrimination. On the other hand, unlike indicators of fundamental education, this plot of tertiary completion rate presents that for most countries in more developed and less developed facets, female rates are higher than male ones, implying again that female has good performance in higher education. 
 
 
 
@@ -227,8 +227,9 @@ vcd::mosaic(level ~ Sex+ Development_Regions,d2,set_labels=list(Development_Regi
 ```
 
 
-We categorized mean year of education into three cuts (low(<6), middle(6-10), high(>10)) and visualized its relationship with development level and gender. From the mosaic plot, there are several noticeable patterns. Firstly, female in least developed countries only have low and middle figures, which mean they barely get educated for more than 10 years. For female in less developed regions, vast majority of them get medium and high figures while high proportion is slightly higher than medium. Secondly, majority male in least development regions lie in middle region. Only very small proportion can receive education for more than 10 years. Male in less developed countries only have middle and high figures. Finally, the regions of more developed countries are deterministic no matter the gender. Everyone from more developed countries can receive at least 10 years of education, which represents adequacy and equal distribution of educational resources. 
+We categorized the mean year of education into three cuts (low(<6), middle(6-10), and high(>10)) and visualized its relationship with development level and gender. From the mosaic plot, there are several noticeable patterns. Firstly, female in the least developed countries only have low and middle figures, which mean they barely get educated for more than 10 years. For females in less developed regions, the vast majority of them get medium and high figures while the high proportion is slightly higher than the medium. Secondly, the majority of male in the least development regions lies in the middle region. Only a very small proportion can receive education for more than 10 years. Males in less developed countries only have middle and high figures. Finally, the regions of more developed countries are deterministic no matter the gender. Everyone from more developed countries can receive at least 10 years of education, which represents adequacy and equal distribution of educational resources. 
 
-Therefore, we prove that countries with poor education performances and more sereve gender stereotype situation are more likely to be less developed.
+Therefore, we prove that countries with poor education performances and more severe gender stereotype situations are more likely to be less developed.
+
 
 
